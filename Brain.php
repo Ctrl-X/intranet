@@ -7,27 +7,58 @@
 		private $dbPass = ""; 
 		private $dbName = "agora"; 
 		
-		// fonction de requete sql
-		function mysqlQuery ($sql)
+		// fonction qui va installer les nouveaux modules
+		function installModules ()
 		{
+			// par défaut les modules n'ont pas d'ordre : ils s'affichent dans l'ordre d'installation
+			
+		}
+		
+		// fonction qui récupère un module
+		function getModule ()
+		{
+			$module = $this->mysqlQuery("SELECT `name`, `order` FROM `module` ORDER BY `installDate` ASC", "select"); 
+			
+			for($i = 0; $i < count($module); $i++)
+				include('modules/' . $module[$i]["name"] . "/model.php"); 
+		}
+		
+		// fonction de requete sql
+		function mysqlQuery ($sql, $type = "select")
+		{
+			$query = mysql_query($sql) or die(mysql_error()); 
+			
+			if(strtolower($type) == "select")
+			{
+				$output = array(); 
+				
+				while($result = mysql_fetch_assoc($query))
+					$output[] = $result; 
+			}
+			else
+				$output = true; 
+			
+			return $output; 
 		}
 		
 		// fonction de création d'une requête sql d'insertion
 		function insertData ($queries)
 		{
-			for($queries AS $tableName => $data)
+			// $Brain->insertData(array("table" => array( "nom" => "dupont", "age" => "18" ), "scndTable" => array( "champ" => "value" ))); 
+			foreach($queries AS $tableName => $data)
 			{
 				$sqlStart = "INSERT INTO `$tableName` ("; 
 				$sqlEnd = ""; 
 				
-				for($data AS $column => $val)
+				foreach($data AS $column => $val)
 				{
 					$sqlStart .= "`$column`, "; 
 					$sqlEnd .= "'$val', "; 
 				}
 				
-				$sql = substr($sqlStart, 0, -2) . ") " . substr($sqlEnd, 0, -2); 
-				$this->mysqlQuery($sql); 
+				$sql = substr($sqlStart, 0, -2) . ") VALUES " . substr($sqlEnd, 0, -2); 
+				echo $sql; 
+				// $this->mysqlQuery($sql); 
 			}
 		}
 		
@@ -41,11 +72,6 @@
 		function __construct ()
 		{
 			$this->connectDb(); 
-		}
-		
-		// fonction qui récupère un module
-		function getModule ()
-		{
 		}
 		
 		// fonction qui nettoye les chaînes de caractères (html, caractères blancs, ...)
