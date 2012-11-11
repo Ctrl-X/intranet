@@ -1,7 +1,18 @@
-﻿<?php
+<?php
+	/*
+		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
+		TODO : js -> tester les affichages des blocs qui grossissent en cliquant sur [+]
+	*/
+	
+	// importation des fonctions génériques non associés à un objet
+	require_once("lib/lib.php"); 
+	
 	// la classe Brain est le moteur PHP principal
-	class Cl_Brain
+	class Brain
 	{
+		private $doNotInstall = array("SignIU", "UsefullLinks"); 
+		
+		private $mysqli = null; 
 		private $dbHost = "localhost"; 
 		private $dbLogin = "root"; 
 		private $dbPass = ""; 
@@ -10,62 +21,153 @@
 		// fonction qui va installer les nouveaux modules
 		function installModules ()
 		{
-			// par défaut les modules n'ont pas d'ordre : ils s'affichent dans l'ordre d'installation
+			// on commence par récupérer les modules qui sont déja installés
+			$installedModules = $this->mysqlQuery("SELECT `name` FROM `module` ORDER BY `installDate` ASC", true); 
 			
+			// on ouvre le dossier des modules
+			$modulesFolder = opendir("modules"); 
+			
+			// on parcourt chacun des sous dossiers
+			while($moduleName = readdir($modulesFolder))
+				// on test si les modules ne sont pas déjà installés
+				// si ce n'est pas le cas on vérifie qu'ils possèdent les fichiers élémentaires
+				if($moduleName != "." && $moduleName != ".." && is_dir('modules/' . $moduleName) && !in_array_r($moduleName, $installedModules))
+				{
+					if(in_array($moduleName, $this->doNotInstall))
+						echo "<strong>$moduleName</strong> : fait partie de la blacklist<br/>"; 
+					else
+					{
+						if(file_exists("modules/$moduleName/$moduleName.php"))
+						{
+							$moduleConfig = $this->getModule(array("MODULE" => $moduleName, "ACTION" => "install")); 
+							
+							$this->createTable($moduleConfig["table"]); 
+							
+							$this->insertData(array(
+								'module' => array(
+									'name' => $moduleName, 
+									'position' => $moduleConfig['position'], 
+									'script' => $moduleConfig['script'], 
+									'style' => $moduleConfig['style'], 
+									'installDate' => time()
+								)
+							)); 
+							
+							echo "<strong>$moduleName</strong> : installation complète<br/>"; 
+						}
+						else
+							echo "<strong>$moduleName</strong> : le fichier <strong>$moduleName.php</strong> est manquant, sans ce fichier l'installation est impossible. Se référer à la documentation concernant l'implémentation d'un module.<br />"; 
+					}
+				}
+		}
+		
+		// fonction qui va afficher les modules en tile
+		function printModule ()
+		{
+			$modules = $this->selectData(array('module' => array('name', 'style', 'script')), '`installDate` ASC'); 
+			
+			for($i = 0; $i < count($modules); $i++)
+			{
+				$theModule = $modules[$i]; 
+				
+				$this->getModule(array('MODULE' => $theModule['name'], 'ACTION' => 'model', 'CONTEXT' => 'tile')); 
+			}
 		}
 		
 		// fonction qui récupère un module
-		function getModule ()
+		function getModule ($_COMMAND = null)
 		{
-			$module = $this->mysqlQuery("SELECT `name`, `order` FROM `module` ORDER BY `installDate` ASC", "select"); 
-			
-			for($i = 0; $i < count($module); $i++)
-				include('modules/' . $module[$i]["name"] . "/model.php"); 
+			if($_COMMAND)
+				return include('modules/' . $_COMMAND["MODULE"] . '/' . $_COMMAND["MODULE"] . '.php'); 
 		}
 		
 		// fonction de requete sql
-		function mysqlQuery ($sql, $type = "select")
+		function mysqlQuery ($sql, $return = false)
 		{
-			$query = mysql_query($sql) or die(mysql_error()); 
+			$query = $this->mysqli->query($sql); 
 			
-			if(strtolower($type) == "select")
+			if($query)
 			{
-				$output = array(); 
-				
-				while($result = mysql_fetch_assoc($query))
-					$output[] = $result; 
+				if($return)
+				{
+					$output = array(); 
+					
+					while($result = $query->fetch_assoc())
+						$output[] = $result; 
+					
+					return $output; 
+				}
 			}
 			else
-				$output = true; 
+				die("la requête demandé n'a pas aboutie pour : $sql"); 
 			
-			return $output; 
+			return true; 
+		}
+		
+		// construction de la requête de création de table sql
+		function createTable ($queries = null)
+		{
+			if($queries)
+				foreach($queries AS $tableName => $champs)
+				{
+					$sql = 'CREATE TABLE ' . $tableName . ' ('; 
+					
+					foreach($champs AS $chName => $chType)
+						$sql .= "$chName $chType, "; 
+					
+					$this->mysqlQuery(substr($sql, 0, -2) . ')'); 
+				}
+		}
+		
+		// création d'une requête select
+		function selectData ($query, $order = null)
+		{
+			$sqlStart = "SELECT "; 
+			$sqlEnd = ' FROM `' . key($query) . '`'; 
+			
+			foreach($query AS $table => $champ)
+			{
+				for($i = 0; $i < count($champ); $i++)
+				{
+					$sqlStart .= '`' . $champ[$i] . '`, '; 
+				}
+			}
+			
+			$sql = substr($sqlStart, 0, -2) . $sqlEnd; 
+			
+			if($order)
+				$sql .= " ORDER BY $order"; 
+			
+			return $this->mysqlQuery($sql, true); 
 		}
 		
 		// fonction de création d'une requête sql d'insertion
-		function insertData ($queries)
+		function insertData ($queries = null)
 		{
-			// $Brain->insertData(array("table" => array( "nom" => "dupont", "age" => "18" ), "scndTable" => array( "champ" => "value" ))); 
-			foreach($queries AS $tableName => $data)
-			{
-				$sqlStart = "INSERT INTO `$tableName` ("; 
-				$sqlEnd = ""; 
-				
-				foreach($data AS $column => $val)
+			if($queries)
+				foreach($queries AS $tableName => $data)
 				{
-					$sqlStart .= "`$column`, "; 
-					$sqlEnd .= "'$val', "; 
+					$sqlStart = "INSERT INTO `$tableName` ("; 
+					$sqlEnd = "("; 
+					
+					foreach($data AS $column => $val)
+					{
+						$sqlStart .= "`$column`, "; 
+						$sqlEnd .= "'$val', "; 
+					}
+					
+					$sql = substr($sqlStart, 0, -2) . ") VALUES " . substr($sqlEnd, 0, -2) . ")"; 
+					$this->mysqlQuery($sql); 
 				}
-				
-				$sql = substr($sqlStart, 0, -2) . ") VALUES " . substr($sqlEnd, 0, -2); 
-				echo $sql; 
-				// $this->mysqlQuery($sql); 
-			}
+			else
+				die("La requête d'insertion semble vide (pas de paramètres pour <strong>insertData()</strong>)"); 
 		}
 		
 		// fonction de connexion à la base de donnée
 		private function connectDb ()
 		{
-			mysqli_connect($this->dbHost, $this->dbLogin, $this->dbPass, $this->dbName); 
+			$this->mysqli = new mysqli($this->dbHost, $this->dbLogin, $this->dbPass, $this->dbName); 
+			$this->mysqli->set_charset('utf8'); 
 		}
 		
 		// fonction init de l'objet Brain
@@ -136,7 +238,8 @@
 		}
 	}
 	
-	$Brain = new Cl_Brain(); 
+	$Brain = new Brain(); 
+	// $Brain->installModules(); 
 ?>
 
 <!-- <script type="text/javascript" src="lib/Brain.js"></script> -->

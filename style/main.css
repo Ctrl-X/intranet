@@ -1,0 +1,24 @@
+/* -- base stylesheet -- */
+* { margin:0; padding:0; font-family:inherit; border:0; } ol, ul { list-style:none; }
+
+body {}
+a {}
+h1, h2, h3, h4, h5, h6 {}
+h1 {} h2 {} h3 {} h4 {} h5 {} h6 {}
+p {}
+blockquote {}
+label {}
+strong {}
+em {}
+select {}
+textarea {}
+input[type="text"], input.text {}
+input[type="submit"], input.submit {}
+.clear { clear:both; }
+
+div#container {
+	margin:20px auto; 
+	width:900px; 
+	height:150px; 
+	border:4px solid red; 
+}
