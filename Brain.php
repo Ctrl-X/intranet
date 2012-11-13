@@ -110,6 +110,7 @@
 		// fonction qui récupère le détail du module
 		function getDetailledModule ()
 		{
+			print_r($_REQUEST); 
 			if(isset($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && $this->doesExist($_REQUEST['MODULE']))
 			{
 				$this->getModule(array(

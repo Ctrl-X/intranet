@@ -1,4 +1,0 @@
-﻿RewriteEngine on
-RewriteBase /campus.sc/
-
-RewriteRule ^test.php$ index.php

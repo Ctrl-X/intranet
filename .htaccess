@@ -1,0 +1,8 @@
+﻿Options +FollowSymlinks
+RewriteEngine On
+
+RewriteBase /campus.sc/
+# RewriteRule ^(images|style|lib)/ - [L]
+RewriteRule ^([0-9A-Za-z]+)/([0-9A-Za-z]+)\.html$ detail.php?MODULE=$1&ACTION=$2 [L]
+
+# detail_Demo/add.html

@@ -6,7 +6,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>holder</title>
-		<link type="text/css" rel="stylesheet" href="style/main.css" />
+		<link type="text/css" rel="stylesheet" href="/campus.sc/style/main.css" />
 	</head>
 	
 	<body>
