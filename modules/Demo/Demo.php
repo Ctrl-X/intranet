@@ -1,7 +1,7 @@
 <?php
 	if(isset($_COMMAND))
 	{
-		switch($_COMMAND["ACTION"])
+		switch($_COMMAND['ACTION'])
 		{
 			case 'install' : 
 				return array(
@@ -18,11 +18,25 @@
 					)
 				); break; 
 			
+			case 'add' : include('add.php'); break; 
+			
 			case 'model' :
 				switch($_COMMAND['CONTEXT'])
 				{
 					case 'tile' : include('tile.php'); break; 
 				} break; 
+			
+			case 'do' : 
+			/* ------------------------------------------------- */
+				// print_r($_COMMAND['PARAMS']); 
+				
+				if($this->isValidPassword($_COMMAND['PARAMS']['pass']))
+					echo 'ok'; 
+				else
+					echo 'not ok'; 
+				
+				break; 
+			/* ------------------------------------------------- */
 		}
 	}
 ?>

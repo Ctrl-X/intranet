@@ -2,36 +2,54 @@
 	/*
 		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
 		TODO : js -> tester les affichages des blocs qui grossissent en cliquant sur [+]
+		TODO : ajouter "limit" à la fonction selectData
 	*/
 	
 	// importation des fonctions génériques non associés à un objet
-	require_once("lib/lib.php"); 
+	require_once('lib/lib.php'); 
 	
 	// la classe Brain est le moteur PHP principal
 	class Brain
 	{
-		private $doNotInstall = array("SignIU", "UsefullLinks"); 
+		private $doNotInstall = array('SignIU', 'UsefullLinks'); 
 		
 		private $mysqli = null; 
-		private $dbHost = "localhost"; 
-		private $dbLogin = "root"; 
-		private $dbPass = ""; 
-		private $dbName = "agora"; 
+		private $dbHost = 'localhost'; 
+		private $dbLogin = 'root'; 
+		private $dbPass = ''; 
+		private $dbName = 'agora'; 
+		
+		// fonction qui surveille les paramètres GET / POST
+		function watchParams () 
+		{
+			if(!empty($_REQUEST))
+			{
+				if(isset($_REQUEST['MODULE']))
+				{
+					$this->getModule(array(
+						'MODULE' => $_REQUEST['MODULE'], 
+						'ACTION' => isset($_REQUEST['ACTION']) ? $_REQUEST['ACTION'] : null, // peut valoir model ou data ou autres selon le module
+						'CONTEXT' => isset($_REQUEST['CONTEXT']) ? $_REQUEST['CONTEXT'] : null, 
+						'PARAMS' => $_REQUEST
+					)); 
+				}
+			}
+		}
 		
 		// fonction qui va installer les nouveaux modules
 		function installModules ()
 		{
 			// on commence par récupérer les modules qui sont déja installés
-			$installedModules = $this->mysqlQuery("SELECT `name` FROM `module` ORDER BY `installDate` ASC", true); 
+			$installedModules = $this->mysqlQuery('SELECT `name` FROM `module` ORDER BY `installDate` ASC', true); 
 			
 			// on ouvre le dossier des modules
-			$modulesFolder = opendir("modules"); 
+			$modulesFolder = opendir('modules'); 
 			
 			// on parcourt chacun des sous dossiers
 			while($moduleName = readdir($modulesFolder))
 				// on test si les modules ne sont pas déjà installés
 				// si ce n'est pas le cas on vérifie qu'ils possèdent les fichiers élémentaires
-				if($moduleName != "." && $moduleName != ".." && is_dir('modules/' . $moduleName) && !in_array_r($moduleName, $installedModules))
+				if($moduleName != '.' && $moduleName != '..' && is_dir('modules/' . $moduleName) && !in_array_r($moduleName, $installedModules))
 				{
 					if(in_array($moduleName, $this->doNotInstall))
 						echo "<strong>$moduleName</strong> : fait partie de la blacklist<br/>"; 
@@ -39,9 +57,9 @@
 					{
 						if(file_exists("modules/$moduleName/$moduleName.php"))
 						{
-							$moduleConfig = $this->getModule(array("MODULE" => $moduleName, "ACTION" => "install")); 
+							$moduleConfig = $this->getModule(array('MODULE' => $moduleName, 'ACTION' => 'install')); 
 							
-							$this->createTable($moduleConfig["table"]); 
+							$this->createTable($moduleConfig['table']); 
 							
 							$this->insertData(array(
 								'module' => array(
@@ -64,7 +82,7 @@
 		// fonction qui va afficher les modules en tile
 		function printModule ()
 		{
-			$modules = $this->selectData(array('module' => array('name', 'style', 'script')), '`installDate` ASC'); 
+			$modules = $this->selectData(array('module' => array('name', 'style', 'script')), array( 'order' => '`installDate` ASC' )); 
 			
 			for($i = 0; $i < count($modules); $i++)
 			{
@@ -78,7 +96,41 @@
 		function getModule ($_COMMAND = null)
 		{
 			if($_COMMAND)
-				return include('modules/' . $_COMMAND["MODULE"] . '/' . $_COMMAND["MODULE"] . '.php'); 
+			{
+				if($_COMMAND['MODULE'] == 'Brain')
+					switch($_COMMAND['ACTION'])
+					{
+						case 'install' : $this->installModules(); break; 
+					}
+				else
+					return include('modules/' . $_COMMAND['MODULE'] . '/' . $_COMMAND['MODULE'] . '.php'); 
+			}
+		}
+		
+		// fonction qui récupère le détail du module
+		function getDetailledModule ()
+		{
+			if(isset($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && $this->doesExist($_REQUEST['MODULE']))
+			{
+				$this->getModule(array(
+					'MODULE' => $_REQUEST['MODULE'], 
+					'ACTION' => $_REQUEST['ACTION'], 
+					'CONTEXT' => isset($_REQUEST['CONTEXT']) ? $_REQUEST['CONTEXT'] : 'detail', 
+					'PARAMS' => $_REQUEST
+				)); 
+			}
+		}
+		
+		// fonction qui vérifie si un module existe et qu'il est installé
+		function doesExist ($moduleName)
+		{
+			return count($this->selectData(array(
+				'module' => array(
+					'name'
+				)
+			), array(
+				'where' => "`name` = '$moduleName'"
+			))) > 0 ? true : false; 
 		}
 		
 		// fonction de requete sql
@@ -120,9 +172,9 @@
 		}
 		
 		// création d'une requête select
-		function selectData ($query, $order = null)
+		function selectData ($query, $params = null)
 		{
-			$sqlStart = "SELECT "; 
+			$sqlStart = 'SELECT '; 
 			$sqlEnd = ' FROM `' . key($query) . '`'; 
 			
 			foreach($query AS $table => $champ)
@@ -135,8 +187,15 @@
 			
 			$sql = substr($sqlStart, 0, -2) . $sqlEnd; 
 			
-			if($order)
-				$sql .= " ORDER BY $order"; 
+			if($params)
+			{
+				if(isset($params['where']))
+					$sql .= ' WHERE ' . $params['where']; 
+				if(isset($params['order']))
+					$sql .= ' ORDER BY ' . $params['order']; 
+				if(isset($params['limit']))
+					$sql .= 'LIMIT ' . $params['limit']; 
+			}
 			
 			return $this->mysqlQuery($sql, true); 
 		}
@@ -148,7 +207,7 @@
 				foreach($queries AS $tableName => $data)
 				{
 					$sqlStart = "INSERT INTO `$tableName` ("; 
-					$sqlEnd = "("; 
+					$sqlEnd = '('; 
 					
 					foreach($data AS $column => $val)
 					{
@@ -156,11 +215,11 @@
 						$sqlEnd .= "'$val', "; 
 					}
 					
-					$sql = substr($sqlStart, 0, -2) . ") VALUES " . substr($sqlEnd, 0, -2) . ")"; 
+					$sql = substr($sqlStart, 0, -2) . ') VALUES ' . substr($sqlEnd, 0, -2) . ')'; 
 					$this->mysqlQuery($sql); 
 				}
 			else
-				die("La requête d'insertion semble vide (pas de paramètres pour <strong>insertData()</strong>)"); 
+				die('La requête d\'insertion semble vide (pas de paramètres pour <strong>insertData()</strong>)'); 
 		}
 		
 		// fonction de connexion à la base de donnée
@@ -174,6 +233,7 @@
 		function __construct ()
 		{
 			$this->connectDb(); 
+			// $this->watchParams(); 
 		}
 		
 		// fonction qui nettoye les chaînes de caractères (html, caractères blancs, ...)
@@ -204,6 +264,8 @@
 		// fonction qui vérifie la validité d'un mot de passe
 		function isValidPassword ($password)
 		{
+			if(strlen($password) > 3)
+				return true; 
 		}
 		
 		// formate un prénom

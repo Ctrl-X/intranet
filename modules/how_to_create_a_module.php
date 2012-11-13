@@ -14,6 +14,8 @@
 				params : paramètres liés à la requête par exemple : (?id_user=1&order=name)
 		
 		Etant à l'intérieur de l'objet Brain l'appel des fonctions se fait de cette façon : $this->fonctionDuBrain(); 
+		
+		Liste des positions possible pour un module : background (inclut en début de page, module de fond de tâche), tile (module classique qui s'affiche dans le bloc principal)
 	*/
 	
 	// on vérifie qu'une commande est passé ($_COMMAND)
