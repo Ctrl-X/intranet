@@ -14,9 +14,7 @@
 	}
 ?>
 
-<!--<form method="POST" action="/campus.sc/detail.php?MODULE=Demo&ACTION=add">-->
-<form method="POST" action="/campus.sc/Demo/add.html">
-	
+<form method="POST" action="?MODULE=Demo&ACTION=add">
 	<input type="text" name="intitule" value="Albert" />
 	<textarea name="description">ma description</textarea>
 	

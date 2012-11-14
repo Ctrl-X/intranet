@@ -1,4 +1,4 @@
-<?php
+// <?php
 	/*
 		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
 		TODO : js -> tester les affichages des blocs qui grossissent en cliquant sur [+]
@@ -11,7 +11,7 @@
 	// la classe Brain est le moteur PHP principal
 	class Brain
 	{
-		private $doNotInstall = array('SignIU', 'UsefullLinks'); 
+		private $doNotInstall = array('Profile', 'UsefullLinks'); 
 		
 		private $mysqli = null; 
 		private $dbHost = 'localhost'; 
@@ -19,7 +19,33 @@
 		private $dbPass = ''; 
 		private $dbName = 'agora'; 
 		
-		// fonction qui surveille les paramètres GET / POST
+		/**
+		 * \brief Lance l'exécution de scripts avant le chargement de la page
+		 * \details Vérifie si la page visité nécessite d'être connecté ou des paramètres ($_GET / $_POST)
+		 * \param $request Un tableau du type array('log' => array('request' => true, 'redirect' => 'index.php'), 'params' => array('request' => array('MODULE', 'ACTION'), 'redirect' => 'index.php'))
+		 * \return ne retourne rien, stop le chargement si le paramètre n'est pas passé
+		 */
+		function beforeLoad ($request = null)
+		{
+			if($request)
+			{
+				if($request['log']['request'] && (!isset($_SESSION) || empty($_SESSION)))
+					header('Location: ' . (isset($request['log']['redirect']) ? $request['log']['redirect'] : 'login.php')); 
+				
+				if($request['params']['request'])
+					for($i = 0; $i < count($request['params']['request']); $i++)
+					{
+						$key = $request['params']['request'][$i]; 
+						
+						if(!isset($_REQUEST[$key]))
+							header('Location: ' . (isset($request['params']['redirect']) ? $request['params']['redirect'] : 'index.php')); 
+					}
+			}
+			else
+				die('tableau $request null pour la fonction beforeLoad'); 
+		}
+		
+		// TOFIX : fonction utile ? 
 		function watchParams () 
 		{
 			if(!empty($_REQUEST))
@@ -36,11 +62,15 @@
 			}
 		}
 		
-		// fonction qui va installer les nouveaux modules
+		/**
+		 * \brief Lance l'installation des nouveaux modules
+		 * \details Vérifie quels sont les modules installés puis regarde dans le dossier 'modules' ceux qui ne le sont pas et les installe si le fichier d'installation existe (un fichier .php qui porte exactemement le même nom que son dossier). 
+		 * \return ne retourne rien, affiche un message lorsqu'un fichier est manquant ou que le module fait partie de la blacklist
+		 */
 		function installModules ()
 		{
 			// on commence par récupérer les modules qui sont déja installés
-			$installedModules = $this->mysqlQuery('SELECT `name` FROM `module` ORDER BY `installDate` ASC', true); 
+			$installedModules = $this->mysqlQuery('SELECT `name` FROM `module` ORDER BY `installDate` ASC'); 
 			
 			// on ouvre le dossier des modules
 			$modulesFolder = opendir('modules'); 
@@ -79,20 +109,39 @@
 				}
 		}
 		
-		// fonction qui va afficher les modules en tile
-		function printModule ()
+		/**
+		 * \brief Affiche un ensemble de module
+		 * \details Sélectionne l'ensemble des modules dans la base de donnée selon les paramètres passés puis les appel via getModule()
+		 * \param $params = array()
+		 * \param 'position' conditionne la récupération des modules à la position qu'ils doivent avoir (modules ne s'affichant que sur l'accueil, modules ne s'affichant que sur la page profil, ...)
+		 * \param 'context' fait partie des informations dont nécessite le module et peut être de différent type (tile, detail, ...). L'affichage varie selon le contexte
+		 * \param 'limit' pour donner une limite à la récupération de ce module (les 5 derniers, ...)
+		 * \return appel la fonction getModule() autant de fois que de modules demandés
+		 */
+		function printModule ($params = array( 'position' => 'normal', 'context' => 'tile', 'limit' => false))
 		{
-			$modules = $this->selectData(array('module' => array('name', 'style', 'script')), array( 'order' => '`installDate` ASC' )); 
+			// TODO : prévoir la condition WHERE et ORDER
+			if(!isset($params['position']))
+				$params['position'] = 'normal'; 
+			if(!isset($params['context']))
+				$params['context'] = 'tile'; 
+			
+			$modules = $this->selectData(array('module' => array('name', 'style', 'script')), array('order' => '`installDate` ASC', 'where' => '`position` = "' . $params['position'] . '"', 'limit' => isset($params['limit']) && $params['limit'] ? $params['limit'] : false)); 
 			
 			for($i = 0; $i < count($modules); $i++)
 			{
 				$theModule = $modules[$i]; 
 				
-				$this->getModule(array('MODULE' => $theModule['name'], 'ACTION' => 'model', 'CONTEXT' => 'tile')); 
+				$this->getModule(array('MODULE' => $theModule['name'], 'ACTION' => 'model', 'CONTEXT' => $params['context'])); 
 			}
 		}
 		
-		// fonction qui récupère un module
+		/**
+		 * \brief Récupère un module
+		 * \details Appel un module en lui passant des commandes soit l'ACTION, le CONTEXT, ... Le module Brain gère ses actions à ce niveau (installation de module, ...)
+		 * \param $_COMMAND = array()
+		 * \return inclut un fichier php
+		 */
 		function getModule ($_COMMAND = null)
 		{
 			if($_COMMAND)
@@ -107,10 +156,14 @@
 			}
 		}
 		
-		// fonction qui récupère le détail du module
+		/**
+		 * \brief Appel la version détaillé d'un module
+		 * \details Récupère un module si des paramètres existent (ACTION, MODULE, CONTEXT) et lui passe l'ensemble des paramètres ($_GET / $_POST). 
+		 * \return inclusion du module via getModule()
+		 */
 		function getDetailledModule ()
 		{
-			print_r($_REQUEST); 
+			// print_r($_REQUEST); 
 			if(isset($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && $this->doesExist($_REQUEST['MODULE']))
 			{
 				$this->getModule(array(
@@ -135,13 +188,13 @@
 		}
 		
 		// fonction de requete sql
-		function mysqlQuery ($sql, $return = false)
+		function mysqlQuery ($sql)
 		{
 			$query = $this->mysqli->query($sql); 
 			
 			if($query)
 			{
-				if($return)
+				if(strpos($sql, 'SELECT') !== false)
 				{
 					$output = array(); 
 					
@@ -190,15 +243,15 @@
 			
 			if($params)
 			{
-				if(isset($params['where']))
+				if(isset($params['where']) && $params['where'])
 					$sql .= ' WHERE ' . $params['where']; 
-				if(isset($params['order']))
+				if(isset($params['order']) && $params['order'])
 					$sql .= ' ORDER BY ' . $params['order']; 
-				if(isset($params['limit']))
-					$sql .= 'LIMIT ' . $params['limit']; 
+				if(isset($params['limit']) && $params['limit'])
+					$sql .= ' LIMIT ' . $params['limit']; 
 			}
 			
-			return $this->mysqlQuery($sql, true); 
+			return $this->mysqlQuery($sql); 
 		}
 		
 		// fonction de création d'une requête sql d'insertion

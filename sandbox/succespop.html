@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Succès Pop</title>
+		<script type="text/javascript" src="../lib/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#pop").toggle(500, function(){
+					setTimeout(function(){
+						$("#pop").fadeOut(); 
+					}, 800); 
+				}); 
+			}); 
+		</script>
+	</head>
+	
+	<body>
+		<div id="pop" style="display:none; width:250px; height:80px; background-color:green; border:2px solid yellow; color:white; position:fixed; top:10px; left:10px;">wesh gros !</div>
+	</body>
+</html>

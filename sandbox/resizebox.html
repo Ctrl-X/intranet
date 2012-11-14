@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Resize Box</title>
+		<script type="text/javascript" src="../lib/jquery.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var html = "<div style='width:250px; height:250px; background-color:yellow;'></div>"; 
+				
+				$("#test div").click(function(){
+					$(this).parent().append(html).children("div:eq(0)").hide(); 
+					
+					var obj = $(this).parent().children("div:eq(1)"),
+						w = $(obj).css("width"), 
+						h = $(obj).css("height");
+					
+					$(obj).css({ width : 0, height : 0 }).animate({ width : w, height : h }, function(){
+						$(obj).click(function(){
+							$(this).animate({ width : 0, height : 0 }, function(){
+								$(obj).parent().children("div:eq(0)").fadeIn(); 
+							}); 
+						}); 
+					}); 
+				}); 
+			}); 
+		</script>
+	</head>
+	
+	<body>
+		<div style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+		<div style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+		<div style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+		<div id="test" style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+		<div style="clear:both"></div>
+		<div style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+		<div style="background-color:red; padding:5px; float:left;">
+			<div style="width:25px; height:25px; cursor:pointer; background-color:#dadada;"></div>
+		</div>
+	</body>
+</html>
