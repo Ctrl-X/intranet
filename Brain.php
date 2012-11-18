@@ -526,15 +526,9 @@
 		// fonction qui nettoye les chaînes de caractères (html, caractères blancs, ...)
 		function cleanString ($str, $pcre = null)
 		{
+			// TODO : cleaner les chaines 
 			if($pcre)
-			{
-				if(!preg_match($pcre, $str))
-				{
-					return false; 
-				}
-				else
-					return $str; 
-			}
+				return !preg_match($pcre, $str) ? false : $str; 
 			
 			return $str; 
 		}
