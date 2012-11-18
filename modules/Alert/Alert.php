@@ -19,4 +19,10 @@
 				); break; 
 		}
 	}
+	
+	$tmp = array(
+		'topMenu' => false, 
+		'box' => true, 
+		'specialRank' => false
+	); 
 ?>

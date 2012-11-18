@@ -7,7 +7,7 @@
 				return array(
 					'position' => 'tile', 
 					'script' => 'Demo.js', 
-					'style' => 'Demo.css', 
+					'css' => 'Demo.css', 
 					'table' => array(
 						'demo' => array(
 							'id_demo' => 'int NOT NULL AUTO_INCREMENT', 
@@ -37,6 +37,8 @@
 				
 				break; 
 			/* ------------------------------------------------- */
+			
+			default : return false; break; 
 		}
 	}
 ?>

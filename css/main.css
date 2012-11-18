@@ -19,6 +19,5 @@ input[type="submit"], input.submit {}
 div#container {
 	margin:20px auto; 
 	width:900px; 
-	height:150px; 
 	border:1px dotted black; 
 }
