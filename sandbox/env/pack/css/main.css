@@ -1,0 +1,49 @@
+/* -- base stylesheet -- */
+* { margin:0; padding:0; font-family:inherit; } ol, ul { list-style:none; }
+
+body {}
+a {}
+h1, h2, h3, h4, h5, h6 {}
+h1 {} h2 {} h3 {} h4 {} h5 {} h6 {}
+p {}
+blockquote {}
+label {}
+strong {}
+em {}
+select {}
+textarea {}
+input[type="text"], input.text {}
+input[type="submit"], input.submit {}
+.clear { clear:both; }
+
+body {
+	font-family:Helvetica, Arial, sans-serif; 
+	font-size:16px; 
+	padding:40px 0 0 0; 
+}
+legend {
+	font-size:1.02em; 
+	font-weight:bold; 
+	color:#ff93df; 
+}
+
+div#controlpannel {
+	background-color:rgb(230, 230, 230); 
+	border-bottom:4px dotted rgb(150, 150, 150); 
+	position:fixed; 
+	top:0; 
+	width:100%; 
+	padding:10px 0 10px 0; 
+}
+div#controlpannel:hover>div {
+	display:block; 
+}
+div#controlpannel>div {
+	display:none; 
+}
+
+div#controlpannel li {
+	float:left; 
+	width:250px; 
+	margin:0 5px 2px 5px; 
+}

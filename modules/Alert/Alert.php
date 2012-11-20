@@ -1,4 +1,5 @@
 <?php
+	/*
 	if(isset($_COMMAND))
 	{
 		switch($_COMMAND['ACTION'])
@@ -25,4 +26,7 @@
 		'box' => true, 
 		'specialRank' => false
 	); 
+	*/
+	
+	return false; 
 ?>

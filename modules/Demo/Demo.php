@@ -5,7 +5,6 @@
 		{
 			case 'install' : 
 				return array(
-					'position' => 'tile', 
 					'script' => 'Demo.js', 
 					'css' => 'Demo.css', 
 					'table' => array(
@@ -41,4 +40,6 @@
 			default : return false; break; 
 		}
 	}
+	
+	return false; 
 ?>

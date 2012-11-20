@@ -17,7 +17,7 @@
 		private $dbHost 	= 'localhost'; 
 		private $dbLogin 	= 'root'; 
 		private $dbPass 	= ''; 
-		private $dbName 	= 'agora'; 
+		private $dbName 	= 'devagora'; 
 		private $css		= array(); 
 		private $js			= array(); 
 		private $error		= array(); 
@@ -281,7 +281,11 @@
 		{
 			if(isset($_REQUEST['email']) && isset($_REQUEST['pass']))
 			{
-				if(count($user = $this->mysqlQuery('SELECT `id_utilisateur`, `prenom`, `utilisateur`.`nom`, `email`, `pass`, `statut`, `rang`, `date_inscription`, `derniere_connexion`, `hash`, `classe`.`nom` AS `classe` FROM `utilisateur` LEFT JOIN `classe` ON `utilisateur`.`id_classe` = `classe`.`id_classe` WHERE `email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\'')) > 0)
+				if(count($user = $this->selectData(array(
+					'utilisateur' => array('*')
+				), array(
+					'where' => '`email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\''
+				))) > 0)
 				{
 					$_SESSION = $user[0]; 
 					$this->updateData(array(
@@ -396,6 +400,7 @@
 		function mysqlQuery ($sql)
 		{
 			$query = strstr($sql, ';') ? $this->mysqli->multi_query($sql) : $this->mysqli->query($sql); 
+			
 			if($query)
 			{
 				if(strpos($sql, 'SELECT') !== false)
@@ -416,52 +421,6 @@
 			}
 			
 			return true; 
-		}
-		
-		function getClasseForm($type = 'select', $name = 'classe', $selectedDefault = true)
-		{
-			if($selectedDefault && (!isset($_SESSION) || empty($_SESSION)))
-				$selectedDefault = false; 
-				
-			$classes = $this->mysqlQuery('SELECT `id_classe`, `nom`, `code` FROM `classe` WHERE `active` = 1 ORDER BY `id_classe` ASC'); 
-			
-			if($type == 'select')
-			{
-				$select = "<select name=\"$name\">"; 
-				
-				for($i = 0; $i < count($classes); $i++)
-					if($selectedDefault && $_SESSION['classe'] == $classes[$i]['nom'])
-						$select .= '<option value="' . $classes[$i]['id_classe'] . '" selected="selected">' . $classes[$i]['nom'] . '</option>'; 
-					else
-						$select .= '<option value="' . $classes[$i]['id_classe'] . '">' . $classes[$i]['nom'] . '</option>'; 
-				
-				$select .= "</select>"; 
-				
-				echo $select; 
-			}
-			else if($type == 'checkbox')
-			{
-				if($name == 'classe')
-					$name = ''; 
-				
-				$checkboxes = ''; 
-				for($i = 0; $i < count($classes); $i++)
-				{
-					$checkboxes .= '<label for="' . $name . $classes[$i]['nom'] . '">' . $classes[$i]['nom'] . ' :</label>'; 
-					if($selectedDefault && $_SESSION['classe'] == $classes[$i]['nom'])
-						$checkboxes .= '<input type="checkbox" name="' . $name . $classes[$i]['code'] . '" value="' . $classes[$i]['id_classe'] . '"  checked="checked" />'; 
-					else
-						$checkboxes .= '<input type="checkbox" name="' . $name . $classes[$i]['code'] . '" value="' . $classes[$i]['id_classe'] . '" />'; 
-				}
-					
-				echo $checkboxes; 
-			}
-			else if($type == 'radio')
-			{
-			}
-			else if($type == 'link')
-			{
-			}
 		}
 		
 		// construction de la requête de création de table sql
