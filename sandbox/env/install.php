@@ -34,6 +34,7 @@
 	  `prenom` varchar(40) NOT NULL,
 	  `nom` varchar(40) NOT NULL,
 	  `email` varchar(120) NOT NULL,
+	  `portrait` varchar(250) NOT NULL DEFAULT '', 
 	  `pass` varchar(250) NOT NULL,
 	  `statut` enum('étudiant','intervenant','administration') NOT NULL,
 	  `id_classe` int(11) NOT NULL,

@@ -16,7 +16,7 @@
 	<body>
 		<div id="container">
 			<?php $Brain->printError('signup'); ?>
-			<form method="post" action="?MODULE=Brain&ACTION=signup">
+			<form method="post" action="?MODULE=Brain&ACTION=signup" enctype="multipart/form-data">
 				<ul>
 					<li>
 						<label for="prenom">Prénom : </label>
@@ -34,6 +34,11 @@
 					</li>
 					
 					<li>
+						<label for="portrait">Image de profil : </label>
+						<input type="file" name="portrait" />
+					</li>
+					
+					<li>
 						<label for="pass">Mot de passe : </label>
 						<input type="password" name="pass" value="<?php if(isset($_REQUEST['pass']) && isset($_REQUEST['ACTION']) && $_REQUEST['ACTION'] == 'signup') echo $_REQUEST['pass']; ?>" />
 					</li>
@@ -47,6 +52,8 @@
 					
 					<li>
 						<label for="classe">Classe : </label>
+						<?php $Brain->getClasseForm('classe'); ?>
+						<!--
 						<select name="classe">
 							<option value="préparatoire">préparatoire</option>
 							<option value="DG1">Design Graphique 1</option>
@@ -58,6 +65,7 @@
 							<option value="Infographiste">Infographiste</option>
 							<option value="Infographiste Alt">Infographiste Alt</option>
 						</select>
+						-->
 					</li>
 					
 					<li>

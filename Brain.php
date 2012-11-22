@@ -1,4 +1,6 @@
 ﻿<?php
+	// TODO : filtre photo gris pour ben
+	// TODO : upload photo de profil
 	/*
 		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
 	*/
@@ -21,7 +23,104 @@
 		private $css		= array(); 
 		private $js			= array(); 
 		private $error		= array(); 
+		private $imagesOk	= array("image/jpeg", "image/jpg", "image/pjpeg", "image/pjpg", "image/png", "image/gif"); 
 		
+		function generateFileName ()
+		{
+			return time() . rand(0, 9); 
+		}
+		
+		// TODO : tester la fonction d'upload de fichier
+		function uploadFile ($output, $chName, $dest, $filter = null)
+		{
+			if(!is_uploaded_file($tmpFile = $_FILES[$chName]['tmp_name'])) return false; 
+			
+			if(!in_array($fileType = $_FILES[$chName]["type"], $this->imagesOk)) return false; 
+			
+			switch($fileType)
+			{
+				case 'image/jpeg' || 'image/jpg' || 'image/pjpeg' || 'image/pjpg' : 
+					$file = imagecreatefromjpeg($_FILES[$chName]['tmp_name']); break; 
+					
+				case 'image/png' :
+					$file = imagecreatefrompng($_FILES[$chName]['tmp_name']); break; 
+				
+				case 'image/gif' : 
+					$file = imagecreatefromgif($_FILES[$chName]['tmp_name']); break; 
+				
+				default : return false; break; 
+			}
+			
+			$size = getimagesize($_FILES[$chName]['tmp_name']);
+			$fileWidth = $size[0]; 
+			$fileHeight = $size[1]; 
+			
+			$ext = explode('.', $_FILES[$chName]["name"]); 
+			$ext = $ext[count($ext) - 1]; 
+			
+			$fileNameList = array(); 
+			
+			for($i = 0; $i < count($output); $i++)
+			{
+				$finalHeight = isset($output[$i]["height"]) ? $output[$i]["height"] : null; 
+				$finalWidth = isset($output[$i]["width"]) ? $output[$i]["width"] : null; 
+				
+				$fileName = $this->generateFileName() . (isset($output[$i]['suffix']) ? $output[$i]['suffix'] : '') . '.' . $ext; 
+				$fileNameList[] = $fileName; 
+				
+				if($fileWidth > $fileHeight)
+				{
+					$newHeight = $finalHeight; 
+					$newWidth = $fileWidth * ($newHeight / $fileHeight); 
+				}
+				else
+				{
+					$newWidth = $fileWidth; 
+					$newHeight = $fileHeight * ($newWidth / $fileWidth); 
+				}
+				
+				$outputHeight = $finalHeight ? $finalHeight : $fileHeight * ($finalWidth / $fileWidth); 
+				$outputWidth = $finalWidth ? $finalWidth : $fileWidth * ($finalHeight / $fileHeight); 
+				
+				$finalFile = imagecreatetruecolor($outputWidth, $outputHeight) or die("erreur lors de la création du calque d'accueil"); 
+				imagecopyresampled($finalFile, $file, 0, 0, 0, 0, $newWidth, $newHeight, $fileWidth, $fileHeight); 
+				
+				if($output[$i]['filter'])
+					switch($output[$i]['filter'])
+					{
+						case 'NEGATE'			: imagefilter($finalFile, IMG_FILTER_NEGATE); break; 
+						case 'GRAYSCALE'		: imagefilter($finalFile, IMG_FILTER_GRAYSCALE); break; 
+						case 'BRIGHTNESS'		: imagefilter($finalFile, IMG_FILTER_BRIGHTNESS); break; 
+						case 'CONTRAST'			: imagefilter($finalFile, IMG_FILTER_CONTRAST); break; 
+						case 'COLORIZE'			: imagefilter($finalFile, IMG_FILTER_COLORIZE); break; 
+						case 'EDGEDETECT'		: imagefilter($finalFile, IMG_FILTER_EDGEDETECT); break; 
+						case 'EMBOSS'			: imagefilter($finalFile, IMG_FILTER_EMBOSS); break; 
+						case 'GAUSSIAN_BLUR'	: imagefilter($finalFile, IMG_FILTER_GAUSSIAN_BLUR); break; 
+						case 'SELECTIVE_BLUR'	: imagefilter($finalFile, IMG_FILTER_SELECTIVE_BLUR); break; 
+						case 'MEAN_REMOVAL'		: imagefilter($finalFile, IMG_FILTER_MEAN_REMOVAL); break; 
+						case 'SMOOTH'			: imagefilter($finalFile, IMG_FILTER_SMOOTH); break; 
+						case 'PIXELATE'			: imagefilter($finalFile, IMG_FILTER_PIXELATE); break; 
+					}
+				
+				
+				switch($fileType)
+				{
+					case "image/jpeg" || "image/jpg" || "image/pjpeg" : 
+						imagejpeg($finalFile , $dest . $fileName, 100) or die("création du fichier jpeg miniature impossible"); 
+						break; 
+					
+					case "image/png" : 
+						imagepng($finalFile , $dest . $fileName, 9) or die("création du fichier png miniature impossible"); 
+						break;
+					
+					case "image/gif" : 
+						imagegif($finalFile , $dest . $fileName) or die("création du fichier gif miniature impossible"); 
+						break; 
+				}
+			}
+			
+			return $fileNameList; 
+		}
 		
 		/**
 		 * \brief	Lance l'exécution de scripts avant le chargement de la page
@@ -63,12 +162,12 @@
 			
 			$fullCss = ''; 
 			for($i = 0; $i < count($this->css); $i++)
-				$fullCss .= '<link type="text/css" rel="stylesheet" src="' . $this->css[$i] . '" />'; 
+				$fullCss .= '<link type="text/css" rel="stylesheet" href="' . $this->css[$i] . '" />'; 
 			
 			
 			$fullJs = ''; 
 			for($i = 0; $i < count($this->js); $i++)
-				$fullJs .= '<script type="text/javascript" href="' . $this->js[$i] . '"></script>'; 
+				$fullJs .= '<script type="text/javascript" src="' . $this->js[$i] . '"></script>'; 
 			
 			$body = str_replace('</head>', $fullCss . $fullJs . '</head>', $body); 
 			
@@ -178,7 +277,6 @@
 		
 		function addCss ($moduleName, $css)
 		{
-			echo $css; 
 			$css = explode(',', str_replace(' ', '', $css)); 
 			for($i = 0; $i < count($css); $i++)
 				$this->css[] = 'modules/' . $moduleName . '/' . $css[$i]; 
@@ -212,7 +310,7 @@
 						case 'sendEmail' : Email::sendEmail($_REQUEST['to'], $_REQUEST['subject'], $_REQUEST['template'], isset($_REQUEST['replyTo']) ? $_REQUEST['replyTo'] : null, isset($_REQUEST['from']) ? $_REQUEST['from'] : null); break; 
 						default : return false; break; 
 					}
-				else if($preloaded || $_COMMAND['ACTION'] == 'install' || $theModule = $this->doesExist($_REQUEST['MODULE']))
+				else if($preloaded || $_COMMAND['ACTION'] == 'install' || $theModule = $this->doesExist($_COMMAND['MODULE']))
 				{
 					if(!$preloaded && $_COMMAND['ACTION'] != 'install')
 					{
@@ -331,18 +429,42 @@
 						$this->error['signup']['email'] = 'Cette adresse email est déjà utilisé par un membre'; 
 					else
 					{
+						$portrait = $this->uploadFile(
+						array
+						(
+							array
+							(
+								'height'	=> 80, 
+								'width'		=> 80, 
+								'suffix'	=> null, 
+								'filter'	=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 80, 
+								'width'		=> 80, 
+								'suffix'	=> '_gray', 
+								'filter'	=> 'GRAYSCALE', 
+								'crop'		=> false
+							)
+						), 'portrait', 'images/portrait/'); 
+						
+						$portrait = $portrait ? 'images/portrait/' . $portrait[0] : ''; 
+						
 						if($this->insertData(array(
 							'utilisateur' => array(
-								'prenom' => $prenom, 
-								'nom' => $nom, 
-								'email' => $email, 
-								'pass' => $pass, 
-								'statut' => $_REQUEST['statut'], 
-								'classe' => $_REQUEST['classe'], 
-								'rang' => 'inactif', 
-								'date_inscription' => time(), 
-								'derniere_connexion' => 0, 
-								'hash' => $hash = uniqid('', true) 
+								'prenom'				=> $prenom, 
+								'nom'					=> $nom, 
+								'email'					=> $email, 
+								'portrait'				=> $portrait, 
+								'pass'					=> $pass, 
+								'statut'				=> $_REQUEST['statut'], 
+								'id_classe'				=> $_REQUEST['classe'], 
+								'rang'					=> 'inactif', 
+								'date_inscription'		=> time(), 
+								'derniere_connexion'	=> 0, 
+								'hash' 					=> $hash = uniqid('', true) 
 							)
 						)))
 						{
@@ -418,7 +540,7 @@
 			return true; 
 		}
 		
-		function getClasseForm($type = 'select', $name = 'classe', $selectedDefault = true)
+		function getClasseForm($name = 'classe', $type = 'select', $selectedDefault = true)
 		{
 			if($selectedDefault && (!isset($_SESSION) || empty($_SESSION)))
 				$selectedDefault = false; 
@@ -557,6 +679,7 @@
 			$this->mysqli->set_charset('utf8'); 
 		}
 		
+		// TOFIX : watchParams avec preloaded à true ? 
 		function watchParams ()
 		{
 			if(isset($_REQUEST['MODULE']) && !empty($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && !empty($_REQUEST['ACTION']))
@@ -564,7 +687,7 @@
 					'MODULE' => $_REQUEST['MODULE'], 
 					'ACTION' => $_REQUEST['ACTION'], 
 					'CONTEXT' => isset($_REQUEST['CONTEXT']) ? $_REQUEST['CONTEXT'] : null), 
-					true
+					false
 				); 
 		}
 		
@@ -640,7 +763,7 @@
 		}
 		
 		// fonction qui vérifie la validité d'un mot de passe
-		function isValidPassword ($password, $errorSpace)
+		function isValidPassword ($password, $errorSpace = 'stored')
 		{
 			$password = $this->cleanString($password); 
 			
@@ -651,6 +774,17 @@
 			}
 			
 			return md5($password); 
+		}
+		
+		function isValidFile ($file, $errorSpace = 'stored')
+		{
+			if(empty($file) || !is_uploaded_file($file['tmp_name']))
+			{
+				$this->error[$errorSpace]['portrait'] = 'Vous devez choisir une image de profil'; 
+				return false; 
+			}
+			
+			return true; 
 		}
 	}
 	

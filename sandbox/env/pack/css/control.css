@@ -1,0 +1,32 @@
+body {
+	font-family:Helvetica, Arial, sans-serif; 
+	font-size:16px; 
+	padding:40px 0 0 0; 
+}
+legend {
+	font-size:1.02em; 
+	font-weight:bold; 
+	color:#ff93df; 
+}
+
+div#controlpannel {
+	z-index:9999; 
+	background-color:rgb(230, 230, 230); 
+	border-bottom:4px dotted rgb(150, 150, 150); 
+	position:fixed; 
+	top:0; 
+	width:100%; 
+	padding:10px 0 10px 0; 
+}
+div#controlpannel:hover>div {
+	display:block; 
+}
+div#controlpannel>div {
+	display:none; 
+}
+
+div#controlpannel li {
+	float:left; 
+	width:250px; 
+	margin:0 5px 2px 5px; 
+}

@@ -1,10 +1,3 @@
-<?php
-	include('Brain.php'); 
-	$Brain->beforeLoad(array(
-		'log'		=> array('request' => true),	// nécessite que l'utilisateur soit connecté ou pas
-		'params'	=> array('request' => false)	// liste des paramètres nécessaires à l'affichage de la page
-	)); 
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -18,11 +11,6 @@
 	</head>
 	
 	<body>
-		<?php
-			// $Brain->getClasseForm('select', 'lenom', true); 
-			// $Brain->getClasseSelect(); 
-			// $Brain->printModule(); 
-		?>
 		<div id="container">
 			<div id="leftcolumn">
 			
@@ -57,7 +45,7 @@
 				<div class="tile _1x1">
 					<h3>Mon module</h3>
 					<div class="content">
-						contenu de mon module
+						caca
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -65,6 +53,3 @@
 		</div>
 	</body>
 </html>
-<?php
-	$Brain->endCapture(); 
-?>

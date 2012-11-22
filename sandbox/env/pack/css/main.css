@@ -1,7 +1,7 @@
 /* -- base stylesheet -- */
 * { margin:0; padding:0; font-family:inherit; } ol, ul { list-style:none; }
 
-body {}
+body { font-family:Helvetica, Arial, sans-serif; font-size:16px; }
 a {}
 h1, h2, h3, h4, h5, h6 {}
 h1 {} h2 {} h3 {} h4 {} h5 {} h6 {}
@@ -16,34 +16,82 @@ input[type="text"], input.text {}
 input[type="submit"], input.submit {}
 .clear { clear:both; }
 
-body {
-	font-family:Helvetica, Arial, sans-serif; 
-	font-size:16px; 
-	padding:40px 0 0 0; 
-}
-legend {
-	font-size:1.02em; 
-	font-weight:bold; 
-	color:#ff93df; 
+div#container {
+	width:1100px; 
+	margin:auto; 
 }
 
-div#controlpannel {
-	background-color:rgb(230, 230, 230); 
-	border-bottom:4px dotted rgb(150, 150, 150); 
-	position:fixed; 
-	top:0; 
-	width:100%; 
-	padding:10px 0 10px 0; 
-}
-div#controlpannel:hover>div {
-	display:block; 
-}
-div#controlpannel>div {
-	display:none; 
-}
-
-div#controlpannel li {
+#leftcolumn {
+	width:275px; 
 	float:left; 
-	width:250px; 
-	margin:0 5px 2px 5px; 
+}
+
+.tile {
+	margin:8px; 
+	overflow:hidden; 
+}
+.tile .content {
+	padding:8px; 
+	border-left:1px solid #ff93df; 
+	border-bottom:1px solid #ff93df; 
+	border-right:1px solid #ff93df; 
+	background-color:#ffffff; 
+}
+.tile h3 {
+	padding:0 0 0 8px; 
+	background-color:rgba(255, 147, 223, 0.6); 
+	color:#ffffff; 
+	line-height:40px; 
+}
+.tile._1x1 .content, .tile._1x2 .content, .tile._1x3 .content, .tile._2x1 .content, .tile._3x1 .content { height:202px; }
+.tile._2x2 .content, .tile._3x2 .content { height:477px; }
+.tile._2x3 .content, .tile._3x3 .content { height:752px; }
+
+.tile._1x1 { width:259px; height:259px; }
+.tile._1x2 { width:534px; height:259px; }
+.tile._1x3 { width:809px; height:259px; }
+.tile._2x1 { width:534px; height:259px; }
+.tile._2x2 { width:534px; height:534px; }
+.tile._2x3 { width:534px; height:809px; }
+.tile._3x1 { width:809px; height:259px; }
+.tile._3x2 { width:809px; height:534px; }
+.tile._3x3 { width:809px; height:809px; }
+
+#leftcolumn .profil {
+	padding:8px; 
+	height:241px; 
+	width:241px; 
+	text-align:center; 
+}
+#leftcolumn .profil .infos {
+	margin:8px 0 8px 0; 
+	padding:6px 0 6px 0; 
+	border-top:1px solid #000; 
+	border-bottom:1px solid #000; 
+	font-size:0.8em; 
+}
+#leftcolumn .profil .links {
+	margin:auto; 
+	width:220px; 
+}
+#leftcolumn .profil .links li {
+	display:inline-block; 
+	margin:0 4px 0 0; 
+}
+
+#leftcolumn .menu li {
+	border:1px solid #000; 
+	margin:8px; 
+	width:73px; 
+	height:73px; 
+	float:left; 
+	background-color:#dadada; 
+}
+
+#maincolumn {
+	width:825px;
+	float:left; 
+}
+#maincolumn .tile {
+	float:left; 
 }
