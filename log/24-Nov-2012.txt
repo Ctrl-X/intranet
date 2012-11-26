@@ -1,0 +1,297 @@
+[17h08] - Gabin_Aureche  : DESCRIBE `utilisateur` 
+[17h08] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h08] - Gabin_Aureche  : DESCRIBE `utilisateur` 
+[17h08] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h10] - Gabin_Aureche  : SHOW INDEX FROM `utilisateur` 
+[17h10] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] - Gabin_Aureche  : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] - Gabin_Aureche  : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] - Gabin_Aureche  : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h13] - Gabin_Aureche  : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h13] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h15] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h16] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h16] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h18] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h18] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h18] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h18] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h19] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h19] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h19] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h19] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h20] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h20] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h20] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h20] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h22] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h22] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h23] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h23] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h24] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h24] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h24] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h24] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h28] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h28] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h28] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h29] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h29] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h29] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h30] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h32] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h32] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h32] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h33] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h33] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h33] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h33] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h33] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h33] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h33] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h34] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[17h34] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[17h34] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h34] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h13] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h13] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h13] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h13] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h14] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h14] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h14] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h15] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h15] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h15] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[18h15] - Gabin_Aureche  : SELECT * FROM utilisateur 
+[18h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[18h15] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h15] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[20h04] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h04] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h04] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[20h04] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h05] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h05] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h05] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[20h05] - Gabin_Aureche  : SELECT * FROM `utilisat LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h05] - Gabin_Aureche  : SHOW INDEXES FROM `utilisateur` 
+[20h05] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h07] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h07] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h07] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h07] - Gabin_Aureche  : SELECT * FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h07] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h07] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h07] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h07] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h08] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h08] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h08] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h08] - Gabin_Aureche  : SELECT * FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h08] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h08] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h08] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h08] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h09] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h09] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h09] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h09] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h09] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h09] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h09] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h11] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h11] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h11] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h11] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h11] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h11] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h11] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h12] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h12] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h12] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h12] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h12] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h12] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h12] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h12] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h12] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h15] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h15] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h15] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h15] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h15] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h16] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h16] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h16] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h16] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h16] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h16] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h16] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h22] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h22] - Gabin_Aureche  : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h22] - Gabin_Aureche  : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h22] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h22] - Gabin_Aureche  : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h22] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h22] - Gabin_Aureche  : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h40] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h40] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h40] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h41] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h42] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h42] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h43] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h43] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h43] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h44] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h44] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h44] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h44] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h45] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h45] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h45] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h45] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h46] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h47] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h48] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h48] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h48] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h48] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h51] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h52] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h53] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h54] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h54] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h54] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h55] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h55] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h55] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h56] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h56] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h56] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h57] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h58] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h58] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h58] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[20h59] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h00] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h01] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h01] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h01] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h02] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h02] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h02] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[21h02] - Gabin_Aureche  : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h02] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 
+[23h10] - Gabin_Aureche  : SHOW INDEXES FROM utilisateur 

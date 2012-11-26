@@ -15,10 +15,29 @@
 		<script type="text/javascript" src="lib/jquery.min.js"></script>
 		<script type="text/javascript" src="lib/jquery.isotope.min.js"></script>
 		<script type="text/javascript" src="lib/Brain.js"></script>
+		
+		<script type="text/javascript">
+			Brain.selectData(
+			{
+				"utilisateur" : ["nom", "prenom"]
+			}, null, function(result){
+				for(i = 0; i < result.length; i++)
+					for(key in result[i])
+						console.log(result[i][key]); 
+			}); 
+			
+			Brain.getModule({
+				"MODULE" : "Brain", 
+				"ACTION" : "test"
+			}, function(result){
+				// $("body").append(result); 
+			}); 
+		</script>
 	</head>
-	
 	<body>
 		<?php
+			$Brain->generatePass(); 
+			// $Brain->signal('utilisateur', 'id_utilisateur', 1); 
 			// $Brain->getClasseForm('select', 'lenom', true); 
 			// $Brain->getClasseSelect(); 
 			// $Brain->printModule(); 
@@ -54,14 +73,46 @@
 			</div>
 			
 			<div id="maincolumn">
+				
+				<div class="tile _1x2">
+					<h3>Mon module</h3>
+					<div class="content">
+						contenu de mon module
+					</div>
+				</div>
+				
+				<div class="tile _2x1">
+					<h3>Mon module</h3>
+					<div class="content">
+						contenu de mon module
+					</div>
+				</div>
+				
+				<div class="tile _1x2">
+					<h3>Mon module</h3>
+					<div class="content">
+						contenu de mon module
+					</div>
+				</div>
+				
 				<div class="tile _1x1">
 					<h3>Mon module</h3>
 					<div class="content">
 						contenu de mon module
 					</div>
 				</div>
+				
+				<div class="tile _1x1">
+					<h3>Mon module</h3>
+					<div class="content">
+						contenu de mon module
+					</div>
+				</div>
+				
 				<div class="clear"></div>
 			</div>
+			
+			<div class="clear"></div>
 		</div>
 	</body>
 </html>

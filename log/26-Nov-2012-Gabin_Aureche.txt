@@ -1,0 +1,2 @@
+[10h29] : SHOW INDEXES FROM utilisateur 
+[10h42] : SHOW INDEXES FROM utilisateur 

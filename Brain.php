@@ -1,6 +1,4 @@
 ﻿<?php
-	// TODO : filtre photo gris pour ben
-	// TODO : upload photo de profil
 	/*
 		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
 	*/
@@ -15,7 +13,7 @@
 		
 		private $doNotInstall = array('Profile', 'UsefullLinks'); 
 		
-		private $mysqli		= null; 
+		public $mysqli		= null; 
 		private $dbHost 	= 'localhost'; 
 		private $dbLogin 	= 'root'; 
 		private $dbPass 	= ''; 
@@ -27,10 +25,31 @@
 		
 		function generateFileName ()
 		{
-			return time() . rand(0, 9); 
+			return time() . (rand(0, 9) * rand(0, 9)); 
 		}
 		
-		// TODO : tester la fonction d'upload de fichier
+		function cleanDirName ($str)
+		{
+			$invalidChar = array(
+				"à", "â", "ç", "è", "é", "ê", "î", "ô", "ù", "û", 
+				"Ä", "Æ", "Ç", "Ê", "Ì", "Í", "Î", "Ï", "Ð", "Ò", 
+				"Ó", "Ô", "Õ", "Ö", "×", "Ø", "Ù", "Ú", "Û", "Ü",
+				"Ý", "Þ", "ß", "á", "ã", "ä", "å", "æ", "ë", "ì",
+				"í", "ï", "ð", "ñ", "ò", "ó", "õ", "ö", "÷", "ø", 
+				"ù", "ú", "û", "ü", "ý", "þ", "ÿ", " ", "'"
+			); 
+			$replacement = array(
+				"a", "a", "c", "e", "e", "e", "i", "o", "u", "u", 
+				"a", "a", "c", "e", "i", "i", "i", "i", "d", "o", 
+				"o", "o", "o", "o", "x", "o", "u", "u", "u", "u",
+				"y", "", "", "a", "a", "a", "a", "ae", "e", "i",
+				"i", "i", "o", "n", "o", "o", "o", "o", "", "o", 
+				"u", "u", "u", "u", "y", "", "y", "_", ""
+			); 
+			
+			return strtolower(str_replace($invalidChar, $replacement, $str)); 
+		}
+		
 		function uploadFile ($output, $chName, $dest, $filter = null)
 		{
 			if(!is_uploaded_file($tmpFile = $_FILES[$chName]['tmp_name'])) return false; 
@@ -90,16 +109,16 @@
 					{
 						case 'NEGATE'			: imagefilter($finalFile, IMG_FILTER_NEGATE); break; 
 						case 'GRAYSCALE'		: imagefilter($finalFile, IMG_FILTER_GRAYSCALE); break; 
-						case 'BRIGHTNESS'		: imagefilter($finalFile, IMG_FILTER_BRIGHTNESS); break; 
-						case 'CONTRAST'			: imagefilter($finalFile, IMG_FILTER_CONTRAST); break; 
-						case 'COLORIZE'			: imagefilter($finalFile, IMG_FILTER_COLORIZE); break; 
+						case 'BRIGHTNESS'		: imagefilter($finalFile, IMG_FILTER_BRIGHTNESS, $output[$i]['args'][0]); break; 
+						case 'CONTRAST'			: imagefilter($finalFile, IMG_FILTER_CONTRAST, $output[$i]['args'][0]); break; 
+						case 'COLORIZE'			: imagefilter($finalFile, IMG_FILTER_COLORIZE, $output[$i]['args'][0], $output[$i]['args'][1], $output[$i]['args'][2]); break; 
 						case 'EDGEDETECT'		: imagefilter($finalFile, IMG_FILTER_EDGEDETECT); break; 
 						case 'EMBOSS'			: imagefilter($finalFile, IMG_FILTER_EMBOSS); break; 
 						case 'GAUSSIAN_BLUR'	: imagefilter($finalFile, IMG_FILTER_GAUSSIAN_BLUR); break; 
 						case 'SELECTIVE_BLUR'	: imagefilter($finalFile, IMG_FILTER_SELECTIVE_BLUR); break; 
 						case 'MEAN_REMOVAL'		: imagefilter($finalFile, IMG_FILTER_MEAN_REMOVAL); break; 
-						case 'SMOOTH'			: imagefilter($finalFile, IMG_FILTER_SMOOTH); break; 
-						case 'PIXELATE'			: imagefilter($finalFile, IMG_FILTER_PIXELATE); break; 
+						case 'SMOOTH'			: imagefilter($finalFile, IMG_FILTER_SMOOTH, $output[$i]['args'][0]); break; 
+						case 'PIXELATE'			: imagefilter($finalFile, IMG_FILTER_PIXELATE, $output[$i]['args'][0], $output[$i]['args'][1]); break; 
 					}
 				
 				
@@ -302,12 +321,20 @@
 				if($_COMMAND['MODULE'] == 'Brain')
 					switch($_COMMAND['ACTION'])
 					{
-						case 'install' : $this->installModules(); break; 
-						case 'signup' : $this->signUp(); break; 
-						case 'activate' : $this->activeAccount(); break; 
-						case 'signin' : $this->signIn(); break; 
-						case 'disconnect' : $this->disconnect(); break; 
-						case 'sendEmail' : Email::sendEmail($_REQUEST['to'], $_REQUEST['subject'], $_REQUEST['template'], isset($_REQUEST['replyTo']) ? $_REQUEST['replyTo'] : null, isset($_REQUEST['from']) ? $_REQUEST['from'] : null); break; 
+						case 'install'		: $this->installModules(); break; 
+						case 'signup'		: $this->signUp(); break; 
+						case 'activate'		: $this->activeAccount(); break; 
+						case 'lostPass'		: $this->newPass(isset($_REQUEST['email']) ? $_REQUEST['email'] : null); break; 
+						case 'signin'		: $this->signIn(); break; 
+						case 'disconnect'	: $this->disconnect(); break; 
+						case 'sendEmail'	: Email::sendEmail($_REQUEST['to'], $_REQUEST['subject'], $_REQUEST['template'], isset($_REQUEST['replyTo']) ? $_REQUEST['replyTo'] : null, isset($_REQUEST['from']) ? $_REQUEST['from'] : null); break; 
+						
+						// actions en ajax
+						case 'selectData' : 
+							echo json_encode($this->selectData($_REQUEST['data'], $_REQUEST['clause'])); break; 
+						case 'test' : 
+							echo '<div style="width:500px; height:500px; background-color:red;"></div>'; break; 
+						
 						default : return false; break; 
 					}
 				else if($preloaded || $_COMMAND['ACTION'] == 'install' || $theModule = $this->doesExist($_COMMAND['MODULE']))
@@ -339,6 +366,52 @@
 		{
 			if(isset($this->error[$from]) && !empty($this->error[$from]))
 				var_dump($this->error[$from]); 
+		}
+		
+		function newPass ($userEmail = null, $sendEmail = true)
+		{
+			if(!$userEmail)
+				return false; 
+			
+			$newPass = $this->generatePass(); 
+			
+			// TODO : le template mail newpass
+			if($sendEmail)
+			{
+				if(Email::sendEmail($userEmail, 'nouveau mot de passe', 
+					array
+					(
+						'name'		=> 'newpass', 
+						'newpass'	=> $newPass
+					)
+				))
+					return $this->mysqlQuery("UPDATE `utilisateur` SET `pass` = '$newPass' WHERE `email` = '$userEmail'"); 
+				else
+					return false; 
+			}
+			else
+				return $this->mysqlQuery("UPDATE `utilisateur` SET `pass` = '$newPass' WHERE `email` = '$userEmail'"); 
+		}
+		
+		function generatePass ($length = 8)
+		{
+			$char = array(
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+				'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 
+				'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 
+				'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 
+				'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 
+				'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+				'W', 'X', 'Y', 'Z', '1', '2', '3', '4', 
+				'5', '6', '7', '8', '9'
+			); 
+			
+			$newPass = ''; 
+			
+			for($i = 0; $i < $length; $i++)
+				$newPass .= $char[rand(0, count($char) - 1)]; 
+			
+			return $newPass; 
 		}
 		
 		function activeAccount ()
@@ -434,18 +507,119 @@
 						(
 							array
 							(
-								'height'	=> 80, 
-								'width'		=> 80, 
-								'suffix'	=> null, 
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_normal', 
 								'filter'	=> null, 
+								'args'		=> null, 
 								'crop'		=> false
 							),
 							array
 							(
-								'height'	=> 80, 
-								'width'		=> 80, 
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_negate', 
+								'filter'	=> 'NEGATE', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
 								'suffix'	=> '_gray', 
 								'filter'	=> 'GRAYSCALE', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_brithness', 
+								'filter'	=> 'BRIGTHNESS', 
+								'args'		=> array(20), 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_contrast', 
+								'filter'	=> 'CONTRAST', 
+								'args'		=> array(20), 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_colorize', 
+								'filter'	=> 'COLORIZE', 
+								'args'		=> array(0, 255, 120), 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_edgedetect', 
+								'filter'	=> 'EDGEDETECT', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_emboss', 
+								'filter'	=> 'EMBOSS', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_gaussian_blur', 
+								'filter'	=> 'GAUSSIAN_BLUR', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_selective_blur', 
+								'filter'	=> 'SELECTIVE_BLUR', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_mean_removal', 
+								'filter'	=> 'MEAN_REMOVAL', 
+								'args'		=> null, 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_smooth', 
+								'filter'	=> 'SMOOTH', 
+								'args'		=> array(6), 
+								'crop'		=> false
+							),
+							array
+							(
+								'height'	=> 400, 
+								'width'		=> 400, 
+								'suffix'	=> '_pixelate', 
+								'filter'	=> 'PIXELATE', 
+								'args'		=> array(15, true), 
 								'crop'		=> false
 							)
 						), 'portrait', 'images/portrait/'); 
@@ -514,30 +688,62 @@
 			))) > 0 ? $theModule[0] : false; 
 		}
 		
-		// fonction de requete sql
-		function mysqlQuery ($sql)
+		function signal ($table, $idch, $idrow)
 		{
-			$query = strstr($sql, ';') ? $this->mysqli->multi_query($sql) : $this->mysqli->query($sql); 
-			if($query)
+			$signaledRow = $this->mysqlQuery("SELECT * FROM `$table` WHERE `$idch` = $idrow", false); 
+			
+			$message = "Contenu signalé : \r\n\r\n"; 
+			foreach($signaledRow[0] AS $key => $val)
+				$message .= "$key : $val \r\n"; 
+			
+			if(!$this->mysqlQuery("INSERT INTO `signaled` (`table`, `idrow`) VALUES ('$table', $idrow)"))
+				$message .= "\r\n\r\n IMPORTANT : l'insertion dans la base a rencontré des problèmes et il est possible que le contenu soit toujours visible"; 
+			
+			$admin = $this->mysqlQuery('SELECT `email` FROM `utilisateur` WHERE `rang` = \'admin\'', false); 
+			for($i = 0; $i < count($admin); $i++)
+				Email::sendEmail($admin[$i]['email'], 'un nouveau contenu a été signalé', $message); 
+		}
+		
+		function mysqlQuery ($sql, $secure = true)
+		{
+			// on ajoute une condition where pour ne pas récupérer un contenu signalé dans les select
+			// ce qui suit modifie complètement la requête sql pour y ajouter un morceau (lier la table signaled et ne retourner que les résultats non signalés
+			if(stristr($sql, 'SELECT'))
 			{
-				if(strpos($sql, 'SELECT') !== false)
+				// pour récupérer même les résultats signalés on peut passer secure à false
+				// la modification de la requête sql peut être un peu lourde (interrogation du schéma de la table, ...)
+				if($secure)
 				{
-					$output = array(); 
+					$table = explode(' ', substr($sql, stripos($sql, 'FROM'))); 
+					$table = str_replace('`', '', $table[1]); 
 					
-					while($result = $query->fetch_assoc())
-						$output[] = $result; 
+					$configTable = $this->mysqlQuery("SHOW INDEXES FROM $table"); 
 					
-					return $output; 
+					$idTable = $configTable[0]['Column_name']; 
+					
+					if(($where = stripos($sql, 'WHERE')) !== false)
+						$sql = substr($sql, 0, $where - 1) . " LEFT JOIN `signaled` ON `signaled`.`table` = '$table' AND `signaled`.`idrow` = `$table`.`$idTable` WHERE `signaled`.`id_signaled` is null AND " . substr($sql, $where + 6); 
+					else
+					{
+						if((($pos = stripos($sql, 'GROUP')) !== false) || (($pos = stripos($sql, 'HAVING')) !== false) || (($pos = stripos($sql, 'ORDER')) !== false) || (($pos = stripos($sql, 'LIMIT')) !== false) || (($pos = stripos($sql, 'PROCEDURE')) !== false))
+							$sql = substr($sql, 0, $pos - 1) . " LEFT JOIN `signaled` ON `signaled`.`table` = '$table' AND `signaled`.`idrow` = `$table`.`$idTable` WHERE `signaled`.`id_signaled` is null " . substr($sql, $pos); 
+						else
+							$sql .= " LEFT JOIN `signaled` ON `signaled`.`table` = '$table' AND `signaled`.`idrow` = `$table`.`$idTable` WHERE `signaled`.`id_signaled` is null"; 
+					}
 				}
 			}
 			else
+				$this->log($sql); 
+			
+			$query = strstr($sql, ';') ? $this->mysqli->multi_query($sql) : $this->mysqli->query($sql); 
+			
+			if($query)
+				return is_object($query) ? $query->fetch_all(MYSQLI_ASSOC) : $query; 
+			else
 			{
-				// return false; 
 				echo '<strong>' . $this->mysqli->error . '</strong><br /><br />'; 
 				die($sql); 
 			}
-			
-			return true; 
 		}
 		
 		function getClasseForm($name = 'classe', $type = 'select', $selectedDefault = true)
@@ -679,7 +885,7 @@
 			$this->mysqli->set_charset('utf8'); 
 		}
 		
-		// TOFIX : watchParams avec preloaded à true ? 
+		// TOFIX : utile pour les commandes ajax
 		function watchParams ()
 		{
 			if(isset($_REQUEST['MODULE']) && !empty($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && !empty($_REQUEST['ACTION']))
@@ -703,7 +909,8 @@
 		// fonction qui nettoye les chaînes de caractères (html, caractères blancs, ...)
 		function cleanString ($str, $pcre = null)
 		{
-			// TODO : cleaner les chaines 
+			$str = strip_tags(trim($str)); 
+			
 			if($pcre)
 				return !preg_match($pcre, $str) ? false : $str; 
 			
@@ -788,29 +995,37 @@
 		}
 	}
 	
-	class Email 
+	class Email
 	{
 		public static function sendEmail ($to, $subject, $template, $replyTo = null, $from = null)
 		{
 			if(!$replyTo)	$replyTo	= Brain::$email['replyTo']; 
 			if(!$from)		$from		= Brain::$email['from']; 
 			
-			$content = Email::getTemplate($template); 
+			$headers =  'From: ' . $from . " \r\n"; 
+			$headers .= 'Reply-To: ' . $replyTo . " \r\n"; 
+			$headers .= "MIME-Version: 1.0 \r\n"; 
+			
+			if(is_array($template))
+			{
+				$content = Email::getTemplate($template); 
+				$headers .= "Content-type: text/html; charset=utf-8 \r\n"; 
+			}
+			else
+			{
+				$content = $template; 
+				$headers .= "Content-type: text/plain; charset=utf-8 \r\n"; 
+			}
 			
 			if($content)
 			{
-				$headers	=  'From: ' . $from . " \r\n"; 
-				$headers	.= 'Reply-To: ' . $replyTo . " \r\n"; 
-				$headers	.= "MIME-Version: 1.0 \r\n"; 
-				$headers	.= "Content-type: text/html; charset=utf-8 \r\n"; 
-				
-				if(!mail($to, $subject, $content, $headers))
+				if(!mail($to, '=?utf-8?b?' . base64_encode($subject) . '==?=', $content, $headers))
 					die('envoi du mail impossible'); 
 				else
 					echo 'envoi done !'; 
 			}
 			else
-				die('une erreur est survenue lors de la récupération du template email (inexistant)'); 
+				die('probleme avec le contenu de l\'email (template peut être inexistant)'); 
 		}
 		
 		public static function getTemplate ($params)
@@ -845,5 +1060,3 @@
 		// )
 	// ); 
 ?>
-
-<!-- <script type="text/javascript" src="lib/Brain.js"></script> -->

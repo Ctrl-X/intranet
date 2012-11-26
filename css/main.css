@@ -43,19 +43,20 @@ div#container {
 	color:#ffffff; 
 	line-height:40px; 
 }
-.tile._1x1 .content, .tile._1x2 .content, .tile._1x3 .content, .tile._2x1 .content, .tile._3x1 .content { height:202px; }
-.tile._2x2 .content, .tile._3x2 .content { height:477px; }
-.tile._2x3 .content, .tile._3x3 .content { height:752px; }
 
 .tile._1x1 { width:259px; height:259px; }
-.tile._1x2 { width:534px; height:259px; }
-.tile._1x3 { width:809px; height:259px; }
+.tile._1x2 { width:259px; height:534px; }
+.tile._1x3 { width:259px; height:809px; }
 .tile._2x1 { width:534px; height:259px; }
 .tile._2x2 { width:534px; height:534px; }
 .tile._2x3 { width:534px; height:809px; }
 .tile._3x1 { width:809px; height:259px; }
 .tile._3x2 { width:809px; height:534px; }
 .tile._3x3 { width:809px; height:809px; }
+
+.tile._1x1 .content, .tile._2x1 .content, .tile._3x1 .content { height:202px; }
+.tile._1x2 .content, .tile._2x2 .content, .tile._3x2 .content { height:477px; }
+.tile._1x3 .content, .tile._2x3 .content, .tile._3x3 .content { height:752px; }
 
 #leftcolumn .profil {
 	padding:8px; 

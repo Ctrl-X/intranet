@@ -1,0 +1,297 @@
+[17h08] : DESCRIBE `utilisateur` 
+[17h08] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h08] : DESCRIBE `utilisateur` 
+[17h08] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h10] : SHOW INDEX FROM `utilisateur` 
+[17h10] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h11] : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h11] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h13] : SHOW INDEX FROM `utilisateur` IN `agora` 
+[17h13] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h15] : SHOW INDEXES FROM utilisateur 
+[17h15] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h16] : SHOW INDEXES FROM utilisateur 
+[17h16] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h18] : SHOW INDEXES FROM utilisateur 
+[17h18] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h18] : SHOW INDEXES FROM utilisateur 
+[17h18] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h19] : SHOW INDEXES FROM utilisateur 
+[17h19] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h19] : SELECT * FROM utilisateur 
+[17h19] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h20] : SELECT * FROM utilisateur 
+[17h20] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h20] : SHOW INDEXES FROM utilisateur 
+[17h20] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h22] : SHOW INDEXES FROM utilisateur 
+[17h22] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h23] : SELECT * FROM utilisateur 
+[17h23] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h24] : SELECT * FROM utilisateur 
+[17h24] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h24] : SHOW INDEXES FROM utilisateur 
+[17h24] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h28] : SHOW INDEXES FROM utilisateur 
+[17h28] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h28] : SHOW INDEXES FROM utilisateur 
+[17h29] : SHOW INDEXES FROM utilisateur 
+[17h29] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h29] : SHOW INDEXES FROM utilisateur 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h30] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h30] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h30] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h30] : SHOW INDEXES FROM utilisateur 
+[17h32] : SHOW INDEXES FROM utilisateur 
+[17h32] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h32] : SHOW INDEXES FROM utilisateur 
+[17h33] : SHOW INDEXES FROM utilisateur 
+[17h33] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h33] : SHOW INDEXES FROM utilisateur 
+[17h33] : SELECT * FROM utilisateur 
+[17h33] : SHOW INDEXES FROM utilisateur 
+[17h33] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h33] : SHOW INDEXES FROM utilisateur 
+[17h34] : SELECT * FROM utilisateur 
+[17h34] : SHOW INDEXES FROM utilisateur 
+[17h34] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[17h34] : SHOW INDEXES FROM `utilisateur` 
+[18h13] : SELECT * FROM utilisateur 
+[18h13] : SHOW INDEXES FROM utilisateur 
+[18h13] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h13] : SHOW INDEXES FROM `utilisateur` 
+[18h14] : SELECT * FROM utilisateur 
+[18h14] : SHOW INDEXES FROM utilisateur 
+[18h14] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] : SHOW INDEXES FROM `utilisateur` 
+[18h14] : SELECT * FROM utilisateur 
+[18h14] : SHOW INDEXES FROM utilisateur 
+[18h14] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] : SHOW INDEXES FROM `utilisateur` 
+[18h14] : SELECT * FROM utilisateur 
+[18h14] : SHOW INDEXES FROM utilisateur 
+[18h14] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h14] : SHOW INDEXES FROM `utilisateur` 
+[18h15] : SELECT * FROM utilisateur 
+[18h15] : SHOW INDEXES FROM utilisateur 
+[18h15] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h15] : SHOW INDEXES FROM `utilisateur` 
+[18h15] : SELECT * FROM utilisateur 
+[18h15] : SHOW INDEXES FROM utilisateur 
+[18h15] : SELECT `nom`, `prenom` FROM `utilisateur` 
+[18h15] : SHOW INDEXES FROM `utilisateur` 
+[20h04] : SHOW INDEXES FROM utilisateur 
+[20h04] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h04] : SHOW INDEXES FROM `utilisateur` 
+[20h04] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h05] : SHOW INDEXES FROM utilisateur 
+[20h05] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h05] : SHOW INDEXES FROM `utilisateur` 
+[20h05] : SELECT * FROM `utilisat LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h05] : SHOW INDEXES FROM `utilisateur` 
+[20h05] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = '`utilisateur`' AND `signaled`.`idrow` = ``utilisateur``.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h07] : SHOW INDEXES FROM utilisateur 
+[20h07] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h07] : SHOW INDEXES FROM utilisateur 
+[20h07] : SELECT * FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h07] : SHOW INDEXES FROM utilisateur 
+[20h07] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h07] : SHOW INDEXES FROM utilisateur 
+[20h07] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h08] : SHOW INDEXES FROM utilisateur 
+[20h08] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h08] : SHOW INDEXES FROM utilisateur 
+[20h08] : SELECT * FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `id_utilisateur` = 1 
+[20h08] : SHOW INDEXES FROM utilisateur 
+[20h08] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h08] : SHOW INDEXES FROM utilisateur 
+[20h08] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h09] : SHOW INDEXES FROM utilisateur 
+[20h09] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h09] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h09] : SHOW INDEXES FROM utilisateur 
+[20h09] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h09] : SHOW INDEXES FROM utilisateur 
+[20h09] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h11] : SHOW INDEXES FROM utilisateur 
+[20h11] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h11] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h11] : SHOW INDEXES FROM utilisateur 
+[20h11] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h11] : SHOW INDEXES FROM utilisateur 
+[20h11] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] : SHOW INDEXES FROM utilisateur 
+[20h12] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h12] : SHOW INDEXES FROM utilisateur 
+[20h12] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h12] : SHOW INDEXES FROM utilisateur 
+[20h12] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h12] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h12] : SHOW INDEXES FROM utilisateur 
+[20h12] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h12] : SHOW INDEXES FROM utilisateur 
+[20h12] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h15] : SHOW INDEXES FROM utilisateur 
+[20h15] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h15] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h15] : SHOW INDEXES FROM utilisateur 
+[20h15] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h15] : SHOW INDEXES FROM utilisateur 
+[20h15] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h16] : SHOW INDEXES FROM utilisateur 
+[20h16] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h16] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h16] : SHOW INDEXES FROM utilisateur 
+[20h16] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h16] : SHOW INDEXES FROM utilisateur 
+[20h16] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h22] : SHOW INDEXES FROM utilisateur 
+[20h22] : SELECT * FROM utilisateur LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h22] : SELECT * FROM `utilisateur` WHERE `id_utilisateur` = 1 
+[20h22] : SHOW INDEXES FROM utilisateur 
+[20h22] : SELECT `email` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null AND `rang` = 'admin' 
+[20h22] : SHOW INDEXES FROM utilisateur 
+[20h22] : SELECT `nom`, `prenom` FROM `utilisateur` LEFT JOIN `signaled` ON `signaled`.`table` = 'utilisateur' AND `signaled`.`idrow` = `utilisateur`.`id_utilisateur` WHERE `signaled`.`id_signaled` is null 
+[20h40] : SHOW INDEXES FROM utilisateur 
+[20h40] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h40] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h41] : SHOW INDEXES FROM utilisateur 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h42] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h42] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h42] : SHOW INDEXES FROM utilisateur 
+[20h43] : SHOW INDEXES FROM utilisateur 
+[20h43] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h43] : SHOW INDEXES FROM utilisateur 
+[20h44] : SHOW INDEXES FROM utilisateur 
+[20h44] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h44] : SHOW INDEXES FROM utilisateur 
+[20h44] : SHOW INDEXES FROM utilisateur 
+[20h45] : SHOW INDEXES FROM utilisateur 
+[20h45] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h45] : SHOW INDEXES FROM utilisateur 
+[20h45] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h46] : SHOW INDEXES FROM utilisateur 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h47] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h47] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h47] : SHOW INDEXES FROM utilisateur 
+[20h48] : SHOW INDEXES FROM utilisateur 
+[20h48] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h48] : SHOW INDEXES FROM utilisateur 
+[20h48] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h51] : SHOW INDEXES FROM utilisateur 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h52] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h52] : SHOW INDEXES FROM utilisateur 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h53] : SHOW INDEXES FROM utilisateur 
+[20h54] : SHOW INDEXES FROM utilisateur 
+[20h54] : SHOW INDEXES FROM utilisateur 
+[20h54] : SHOW INDEXES FROM utilisateur 
+[20h55] : SHOW INDEXES FROM utilisateur 
+[20h55] : SHOW INDEXES FROM utilisateur 
+[20h55] : SHOW INDEXES FROM utilisateur 
+[20h56] : SHOW INDEXES FROM utilisateur 
+[20h56] : SHOW INDEXES FROM utilisateur 
+[20h56] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h57] : SHOW INDEXES FROM utilisateur 
+[20h58] : SHOW INDEXES FROM utilisateur 
+[20h58] : SHOW INDEXES FROM utilisateur 
+[20h58] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[20h59] : SHOW INDEXES FROM utilisateur 
+[21h00] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h00] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h00] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h00] : SHOW INDEXES FROM utilisateur 
+[21h01] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h01] : SHOW INDEXES FROM utilisateur 
+[21h01] : SHOW INDEXES FROM utilisateur 
+[21h02] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h02] : SHOW INDEXES FROM utilisateur 
+[21h02] : SHOW INDEXES FROM utilisateur 
+[21h02] : INSERT INTO `signaled` (`table`, `idrow`) VALUES ('utilisateur', 1) 
+[21h02] : SHOW INDEXES FROM utilisateur 
+[23h10] : SHOW INDEXES FROM utilisateur 
