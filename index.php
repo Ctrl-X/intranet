@@ -32,6 +32,10 @@
 			}, function(result){
 				// $("body").append(result); 
 			}); 
+			
+			$(document).ready(function(){
+				Brain.confirm("#confirm", "u sure ??"); 
+			}); 
 		</script>
 	</head>
 	<body>
@@ -42,6 +46,7 @@
 			// $Brain->getClasseSelect(); 
 			// $Brain->printModule(); 
 		?>
+		<a id="confirm" href="http://google.com">here we go</a>
 		<div id="container">
 			<div id="leftcolumn">
 			
@@ -73,8 +78,7 @@
 			</div>
 			
 			<div id="maincolumn">
-				
-				<div class="tile _1x2">
+				<div class="tile _1x3">
 					<h3>Mon module</h3>
 					<div class="content">
 						contenu de mon module

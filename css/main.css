@@ -17,12 +17,12 @@ input[type="submit"], input.submit {}
 .clear { clear:both; }
 
 div#container {
-	width:1100px; 
+	width:900px; 
 	margin:auto; 
 }
 
 #leftcolumn {
-	width:275px; 
+	width:225px; 
 	float:left; 
 }
 
@@ -44,24 +44,23 @@ div#container {
 	line-height:40px; 
 }
 
-.tile._1x1 { width:259px; height:259px; }
-.tile._1x2 { width:259px; height:534px; }
-.tile._1x3 { width:259px; height:809px; }
-.tile._2x1 { width:534px; height:259px; }
-.tile._2x2 { width:534px; height:534px; }
-.tile._2x3 { width:534px; height:809px; }
-.tile._3x1 { width:809px; height:259px; }
-.tile._3x2 { width:809px; height:534px; }
-.tile._3x3 { width:809px; height:809px; }
+.tile._1x1 { width:209px; height:209px; }
+.tile._1x2 { width:209px; height:434px; }
+.tile._1x3 { width:209px; height:659px; }
+.tile._2x1 { width:434px; height:209px; }
+.tile._2x2 { width:434px; height:434px; }
+.tile._2x3 { width:434px; height:659px; }
+.tile._3x1 { width:659px; height:209px; }
+.tile._3x2 { width:659px; height:434px; }
+.tile._3x3 { width:659px; height:659px; }
 
-.tile._1x1 .content, .tile._2x1 .content, .tile._3x1 .content { height:202px; }
-.tile._1x2 .content, .tile._2x2 .content, .tile._3x2 .content { height:477px; }
-.tile._1x3 .content, .tile._2x3 .content, .tile._3x3 .content { height:752px; }
+.tile._1x1 .content, .tile._2x1 .content, .tile._3x1 .content { height:152px; }
+.tile._1x2 .content, .tile._2x2 .content, .tile._3x2 .content { height:377px; }
+.tile._1x3 .content, .tile._2x3 .content, .tile._3x3 .content { height:602px; }
 
 #leftcolumn .profil {
-	padding:8px; 
-	height:241px; 
-	width:241px; 
+	height:209px; 
+	width:209px; 
 	text-align:center; 
 }
 #leftcolumn .profil .infos {
@@ -73,7 +72,6 @@ div#container {
 }
 #leftcolumn .profil .links {
 	margin:auto; 
-	width:220px; 
 }
 #leftcolumn .profil .links li {
 	display:inline-block; 
@@ -82,15 +80,15 @@ div#container {
 
 #leftcolumn .menu li {
 	border:1px solid #000; 
-	margin:8px; 
-	width:73px; 
-	height:73px; 
+	margin:4px; 
+	width:65px; 
+	height:65px; 
 	float:left; 
 	background-color:#dadada; 
 }
 
 #maincolumn {
-	width:825px;
+	width:675px;
 	float:left; 
 }
 #maincolumn .tile {
