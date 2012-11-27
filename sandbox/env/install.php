@@ -125,6 +125,12 @@
 	(79, 'Camilla', 'Medina', 'nibh.dolor@dignissim.org', 'UNP66TYN9YQ', 'étudiant', 7, 'modérateur', 1353086449, 1335820949, 'WCH83EZY7XG'),
 	(80, 'Illiana', 'Hodge', 'commodo@nulla.org', 'TRB76SFN4XX', 'étudiant', 7, 'modérateur', 1353039827, 1348850315, 'LOI14OOX6NY'),
 	(81, 'Hedda', 'Baxter', 'odio.semper.cursus@orci.org', 'VQG25DFN9GU', 'étudiant', 2, 'désactivé', 1353015461, 1330514364, 'MXN14LNM1PP');
+	CREATE TABLE IF NOT EXISTS `signaled` (
+	`id_signaled` int(11) NOT NULL AUTO_INCREMENT,
+	`table` varchar(50) NOT NULL,
+	`idrow` int(11) NOT NULL,
+	PRIMARY KEY (`id_signaled`)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 	"; 
 	
 	$req = $Brain->mysqlQuery($sql); 
