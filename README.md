@@ -1,2 +1,2 @@
-campus.sc
+intranet
 =========

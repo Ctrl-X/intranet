@@ -1,0 +1,2 @@
+[9h10] : UPDATE `utilisateur` SET `derniere_connexion` = '1354612252' WHERE `email` = 'd.marcel@live.fr' 
+[9h10] : SHOW INDEXES FROM `classe` 

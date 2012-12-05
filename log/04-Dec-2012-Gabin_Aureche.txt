@@ -1,0 +1,28 @@
+[9h16] : UPDATE `utilisateur` SET `derniere_connexion` = '1354612619' WHERE `email` = 'gabin.aureche@live.fr' 
+[9h16] : SHOW INDEXES FROM `classe` 
+[9h16] : SHOW INDEXES FROM `utilisateur` 
+[9h17] : SHOW INDEXES FROM `utilisateur` 
+[9h18] : SHOW INDEXES FROM `utilisateur` 
+[9h18] : SHOW INDEXES FROM `utilisateur` 
+[9h18] : SHOW INDEXES FROM `utilisateur` 
+[9h18] : SHOW INDEXES FROM `utilisateur` 
+[9h19] : SHOW INDEXES FROM `utilisateur` 
+[9h19] : SHOW INDEXES FROM `utilisateur` 
+[9h20] : SHOW INDEXES FROM `utilisateur` 
+[9h21] : SHOW INDEXES FROM `utilisateur` 
+[9h21] : SHOW INDEXES FROM `utilisateur` 
+[9h22] : SHOW INDEXES FROM `utilisateur` 
+[9h22] : UPDATE `utilisateur` SET `derniere_connexion` = '1354612941' WHERE `email` = 'gabin.aureche@live.fr' 
+[9h22] : SHOW INDEXES FROM `classe` 
+[9h22] : SHOW INDEXES FROM `utilisateur` 
+[9h22] : SHOW INDEXES FROM `utilisateur` 
+[9h22] : SHOW INDEXES FROM `utilisateur` 
+[9h23] : UPDATE `utilisateur` SET `derniere_connexion` = '1354612992' WHERE `email` = 'gabin.aureche@live.fr' 
+[9h23] : SHOW INDEXES FROM `classe` 
+[9h23] : SHOW INDEXES FROM `utilisateur` 
+[9h23] : SHOW INDEXES FROM `utilisateur` 
+[9h24] : UPDATE `utilisateur` SET `derniere_connexion` = '1354613050' WHERE `email` = 'gabin.aureche@live.fr' 
+[9h24] : SHOW INDEXES FROM `classe` 
+[9h24] : SHOW INDEXES FROM `utilisateur` 
+[10h08] : UPDATE `utilisateur` SET `derniere_connexion` = '1354615727' WHERE `email` = 'gabin.aureche@live.fr' 
+[10h08] : SHOW INDEXES FROM `classe` 

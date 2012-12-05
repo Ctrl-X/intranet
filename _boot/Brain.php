@@ -1,10 +1,12 @@
 ﻿<?php
+	// passer en mode debug
+	define('_DEBUGMODE', true); 
 	/*
 		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
 	*/
 	
 	// importation des fonctions génériques non associés à un objet
-	require_once('lib/lib.php'); 
+	require_once('lib.php'); 
 	
 	// la classe Brain est le moteur PHP principal
 	class Brain
@@ -13,7 +15,11 @@
 		
 		private $doNotInstall = array('Profile', 'UsefullLinks'); 
 		
-		public $mysqli		= null; 
+		// mysqli fonctionne pas chez ovh
+		// public  $mysqli		= null; 
+		
+		public $mysql		= null; 
+		
 		private $dbHost 	= 'localhost'; 
 		private $dbLogin 	= 'root'; 
 		private $dbPass 	= ''; 
@@ -21,11 +27,30 @@
 		private $css		= array(); 
 		private $js			= array(); 
 		private $error		= array(); 
-		private $imagesOk	= array("image/jpeg", "image/jpg", "image/pjpeg", "image/pjpg", "image/png", "image/gif"); 
 		
 		function generateFileName ()
 		{
 			return time() . (rand(0, 9) * rand(0, 9)); 
+		}
+		
+		public static function _text ($text, $end = null, $start = 0)
+		{
+			$text = Brain::cleanString($text); 
+			
+			if($end)
+				$text = substr($text, $start, $end); 
+			
+			echo $text; 
+		}
+		
+		public static function _echo ($str, $end = null, $start = 0)
+		{
+			$str = Brain::cleanString($str); 
+			
+			if($end)
+				$str = substr($str, $start, $end); 
+			
+			echo $str; 
 		}
 		
 		function cleanDirName ($str)
@@ -50,11 +75,18 @@
 			return strtolower(str_replace($invalidChar, $replacement, $str)); 
 		}
 		
-		function uploadFile ($output, $chName, $dest, $filter = null)
+		/*
+		 * $output		= tableau d'informations pour les fichiers de sorties
+		 * $chName		= nom du champ file
+		 * $dest		= répertoire de destination
+		 * $filter		= possibilité de préciser un filtre photo
+		 * $imagesOk	= tableau des formats de fichiers images acceptés
+		 */
+		function uploadFile ($output, $chName, $dest, $filter = null, $imagesOk = array('image/jpeg', 'image/jpg', 'image/pjpeg', 'image/pjpg', 'image/png', 'image/gif'))
 		{
 			if(!is_uploaded_file($tmpFile = $_FILES[$chName]['tmp_name'])) return false; 
 			
-			if(!in_array($fileType = $_FILES[$chName]["type"], $this->imagesOk)) return false; 
+			if(!in_array($fileType = $_FILES[$chName]["type"], $imagesOk)) return false; 
 			
 			switch($fileType)
 			{
@@ -149,7 +181,6 @@
 		 */
 		function beforeLoad ($request = null)
 		{
-			print_r($_SESSION); 
 			if($request)
 			{
 				if($request['log']['request'] && (!isset($_SESSION) || empty($_SESSION)))
@@ -201,7 +232,7 @@
 		function installModules ()
 		{
 			// on commence par récupérer les modules qui sont déja installés
-			$installedModules = $this->mysqlQuery('SELECT `name` FROM `module` ORDER BY `installDate` ASC'); 
+			$installedModules = Brain::mysqlQuery('SELECT `name` FROM `module` ORDER BY `installDate` ASC'); 
 			
 			// on ouvre le dossier des modules
 			$modulesFolder = opendir('modules'); 
@@ -350,7 +381,7 @@
 			}
 		}
 		
-		function log ($text)
+		public static function log ($text)
 		{
 			$fileName = 'log/' . date('d-M-Y', time()); 
 			
@@ -385,12 +416,12 @@
 						'newpass'	=> $newPass
 					)
 				))
-					return $this->mysqlQuery("UPDATE `utilisateur` SET `pass` = '" . md5($newPass) . "' WHERE `email` = '$userEmail'"); 
+					return Brain::mysqlQuery("UPDATE `utilisateur` SET `pass` = '" . md5($newPass) . "' WHERE `email` = '$userEmail'"); 
 				else
 					return false; 
 			}
 			else
-				return $this->mysqlQuery("UPDATE `utilisateur` SET `pass` = '$newPass' WHERE `email` = '$userEmail'"); 
+				return Brain::mysqlQuery("UPDATE `utilisateur` SET `pass` = '$newPass' WHERE `email` = '$userEmail'"); 
 		}
 		
 		function generatePass ($length = 8)
@@ -452,17 +483,24 @@
 		{
 			if(isset($_REQUEST['email']) && isset($_REQUEST['pass']))
 			{
-				if(count($user = $this->mysqlQuery('SELECT `id_utilisateur`, `prenom`, `utilisateur`.`nom`, `email`, `pass`, `statut`, `rang`, `date_inscription`, `derniere_connexion`, `hash`, `classe`.`nom` AS `classe` FROM `utilisateur` LEFT JOIN `classe` ON `utilisateur`.`id_classe` = `classe`.`id_classe` WHERE `email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\'')) > 0)
+				if(count($user = Brain::mysqlQuery('SELECT `id_utilisateur`, `prenom`, `utilisateur`.`nom`, `email`, `pass`, `statut`, `rang`, `date_inscription`, `derniere_connexion`, `hash`, `classe`.`nom` AS `classe` FROM `utilisateur` LEFT JOIN `classe` ON `utilisateur`.`id_classe` = `classe`.`id_classe` WHERE `email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\'')) > 0)
 				{
-					$_SESSION = $user[0]; 
-					$this->updateData(array(
-						'utilisateur' => array(
-							'derniere_connexion' => time(), 
-							'where' => '`email` = \'' . $user[0]['email'] . '\'' 
-						)
-					)); 
-					
-					echo 'you just get logged in !'; 
+					if($user[0]['rang'] != 'inactif' && $user[0]['rang'] != 'désactivé')
+					{
+						$_SESSION = $user[0]; 
+						$this->updateData(array(
+							'utilisateur' => array(
+								'derniere_connexion' => time(), 
+								'where' => '`email` = \'' . $user[0]['email'] . '\'' 
+							)
+						)); 
+						
+						echo 'you just get logged in !'; 
+					}
+					else
+					{
+						echo 'compte inactif'; 
+					}
 				}
 				else
 					echo('email ou mot de passe incorrect'); 
@@ -474,10 +512,10 @@
 			if(!empty($_POST))
 			{
 				$pattern = array(
-					'prenom' => 'isValidFirstname', 
-					'nom' => 'isValidLastname', 
-					'email' => 'isValidEmail', 
-					'pass' => 'isValidPassword'
+					'prenom'	=> 'isValidFirstname', 
+					'nom'		=> 'isValidLastname', 
+					'email'		=> 'isValidEmail', 
+					'pass'		=> 'isValidPassword'
 				); 
 				
 				foreach($pattern AS $key => $func)
@@ -634,7 +672,7 @@
 								'portrait'				=> $portrait, 
 								'pass'					=> $pass, 
 								'statut'				=> $_REQUEST['statut'], 
-								'id_classe'				=> $_REQUEST['classe'], 
+								'id_classe'				=> $_REQUEST['statut'] != 'etudiant' ? $this->getClasseId('cadre') : $_REQUEST['classe'], 
 								'rang'					=> 'inactif', 
 								'date_inscription'		=> time(), 
 								'derniere_connexion'	=> 0, 
@@ -651,10 +689,19 @@
 									'toemail' => $email
 								)
 							); 
+							
+							echo "l'inscription s'est bien passé"; 
 						}
 					}
 				}
 			}
+		}
+		
+		function getClasseId ($name)
+		{
+			$id = Brain::mysqlQuery("SELECT `id_classe` FROM `classe` WHERE `classe`.`nom` = '$name' OR `classe`.`code` = '$name'", false); 
+			
+			return $id[0]['id_classe']; 
 		}
 		
 		/**
@@ -690,25 +737,25 @@
 		
 		function signal ($table, $idch, $idrow)
 		{
-			$signaledRow = $this->mysqlQuery("SELECT * FROM `$table` WHERE `$idch` = $idrow", false); 
+			$signaledRow = Brain::mysqlQuery("SELECT * FROM `$table` WHERE `$idch` = $idrow", false); 
 			
 			$message = "Contenu signalé : \r\n\r\n"; 
 			foreach($signaledRow[0] AS $key => $val)
 				$message .= "$key : $val \r\n"; 
 			
-			if(!$this->mysqlQuery("INSERT INTO `signaled` (`table`, `idrow`) VALUES ('$table', $idrow)"))
+			if(!Brain::mysqlQuery("INSERT INTO `signaled` (`table`, `idrow`) VALUES ('$table', $idrow)"))
 				$message .= "\r\n\r\n IMPORTANT : l'insertion dans la base a rencontré des problèmes et il est possible que le contenu soit toujours visible"; 
 			
-			$admin = $this->mysqlQuery('SELECT `email` FROM `utilisateur` WHERE `rang` = \'admin\'', false); 
+			$admin = Brain::mysqlQuery('SELECT `email` FROM `utilisateur` WHERE `rang` = \'admin\'', false); 
 			for($i = 0; $i < count($admin); $i++)
 				Email::sendEmail($admin[$i]['email'], 'un nouveau contenu a été signalé', $message); 
 		}
 		
-		function mysqlQuery ($sql, $secure = true)
+		public static function mysqlQuery ($sql, $secure = true)
 		{
 			// on ajoute une condition where pour ne pas récupérer un contenu signalé dans les select
 			// ce qui suit modifie complètement la requête sql pour y ajouter un morceau (lier la table signaled et ne retourner que les résultats non signalés
-			if(stristr($sql, 'SELECT'))
+			if($select = stristr($sql, 'SELECT'))
 			{
 				// pour récupérer même les résultats signalés on peut passer secure à false
 				// la modification de la requête sql peut être un peu lourde (interrogation du schéma de la table, ...)
@@ -717,9 +764,10 @@
 					$table = explode(' ', substr($sql, stripos($sql, 'FROM'))); 
 					$table = str_replace('`', '', $table[1]); 
 					
-					$configTable = $this->mysqlQuery("SHOW INDEXES FROM $table"); 
+					$configTable = Brain::mysqlQuery("SHOW INDEXES FROM `$table`"); 
+					$configTable = mysql_fetch_assoc($configTable); 
 					
-					$idTable = $configTable[0]['Column_name']; 
+					$idTable = $configTable['Column_name']; 
 					
 					if(($where = stripos($sql, 'WHERE')) !== false)
 						$sql = substr($sql, 0, $where - 1) . " LEFT JOIN `signaled` ON `signaled`.`table` = '$table' AND `signaled`.`idrow` = `$table`.`$idTable` WHERE `signaled`.`id_signaled` is null AND " . substr($sql, $where + 6); 
@@ -733,8 +781,22 @@
 				}
 			}
 			else
-				$this->log($sql); 
+				Brain::log($sql); 
 			
+			$query = mysql_query($sql) or die(mysql_error()); 
+			
+			if($select)
+			{
+				$output = array(); 
+				while($row = mysql_fetch_assoc($query))
+					$output[] = $row; 
+				
+				return $output; 
+			}
+			
+			return $query; 
+			/*
+			// mysqli ne fonction pas chez ovh
 			$query = strstr($sql, ';') ? $this->mysqli->multi_query($sql) : $this->mysqli->query($sql); 
 			
 			if($query)
@@ -744,14 +806,20 @@
 				echo '<strong>' . $this->mysqli->error . '</strong><br /><br />'; 
 				die($sql); 
 			}
+			*/
 		}
 		
-		function getClasseForm($name = 'classe', $type = 'select', $selectedDefault = true)
+		function getClasse ($all = false)
+		{
+			return Brain::mysqlQuery('SELECT * FROM `classe` WHERE `active` = 1 ' . ($all ? '' : ' AND `selectable` = 1') . ' ORDER BY `id_classe` ASC'); 
+		}
+		
+		function getClasseForm($name = 'classe', $type = 'select', $selectedDefault = true, $all = false)
 		{
 			if($selectedDefault && (!isset($_SESSION) || empty($_SESSION)))
 				$selectedDefault = false; 
-				
-			$classes = $this->mysqlQuery('SELECT `id_classe`, `nom`, `code` FROM `classe` WHERE `active` = 1 ORDER BY `id_classe` ASC'); 
+			
+			$classes = Brain::mysqlQuery('SELECT `id_classe`, `nom`, `code` FROM `classe` WHERE `active` = 1 ' . ($all ? '' : ' AND `selectable` = 1') . ' ORDER BY `id_classe` ASC'); 
 			
 			if($type == 'select')
 			{
@@ -803,7 +871,7 @@
 					foreach($champs AS $chName => $chType)
 						$sql .= "$chName $chType, "; 
 					
-					$this->mysqlQuery(substr($sql, 0, -2) . ')'); 
+					Brain::mysqlQuery(substr($sql, 0, -2) . ')'); 
 				}
 		}
 		
@@ -832,7 +900,7 @@
 					$sql .= ' LIMIT ' . $params['limit']; 
 			}
 			
-			return $this->mysqlQuery($sql); 
+			return Brain::mysqlQuery($sql); 
 		}
 		
 		// fonction de création d'une requête sql d'insertion
@@ -851,7 +919,7 @@
 					}
 					
 					$sql = substr($sqlStart, 0, -2) . ') VALUES ' . substr($sqlEnd, 0, -2) . ')'; 
-					$this->mysqlQuery($sql); 
+					Brain::mysqlQuery($sql); 
 				}
 			else
 			{
@@ -873,16 +941,21 @@
 				
 				$sql = substr($sql, 0, -2) . ' WHERE ' . $champList['where']; 
 				
-				if($this->mysqlQuery($sql))
-					echo 'compte activé'; 
+				Brain::mysqlQuery($sql); 
 			}
 		}
 		
 		// fonction de connexion à la base de donnée
 		private function connectDb ()
 		{
+			$this->mysql = mysql_connect($this->dbHost, $this->dbLogin, $this->dbPass); 
+			mysql_select_db($this->dbName); 
+			mysql_query("SET NAMES 'utf8'"); 
+			/*
+			// mysqli ne fonction pas chez ovh
 			$this->mysqli = new mysqli($this->dbHost, $this->dbLogin, $this->dbPass, $this->dbName); 
 			$this->mysqli->set_charset('utf8'); 
+			*/
 		}
 		
 		// TOFIX : utile pour les commandes ajax
@@ -904,10 +977,11 @@
 			$this->connectDb(); 
 			$this->startCapture(); 
 			$this->watchParams(); 
+			$this->cleanPosted(); 
 		}
 		
 		// fonction qui nettoye les chaînes de caractères (html, caractères blancs, ...)
-		function cleanString ($str, $pcre = null)
+		public static function cleanString ($str, $pcre = null)
 		{
 			$str = strip_tags(trim($str)); 
 			
@@ -917,20 +991,17 @@
 			return $str; 
 		}
 		
-		// mise en forme d'un texte monoligne
-		function setSentence ($sentence)
+		private function cleanPosted ()
 		{
-		}
-		
-		// mise en forme d'un texte multiligne
-		function setText ($text)
-		{
+			if(isset($_REQUEST) && !empty($_REQUEST))
+				foreach($_REQUEST AS $key => $val)
+					$_REQUEST[$key] = Brain::cleanString($val); 
 		}
 		
 		// fonction qui vérifie la validité d'un prénom
 		function isValidFirstname ($firstname, $errorSpace = 'stored')
 		{
-			$firstname = $this->cleanString($firstname, '/^[A-Za-z]+$/'); 
+			$firstname = Brain::cleanString($firstname, '/^[A-Za-z]+$/'); 
 			
 			if(!$firstname || strlen($firstname) < 3)
 			{
@@ -944,7 +1015,7 @@
 		// fonction qui vérifie la validité d'un nom
 		function isValidLastname ($lastname, $errorSpace = 'stored')
 		{
-			$lastname = $this->cleanString($lastname, '/^[A-Za-z]+$/'); 
+			$lastname = Brain::cleanString($lastname, '/^[A-Za-z]+$/'); 
 			
 			if(!$lastname || strlen($lastname) < 3)
 			{
@@ -958,7 +1029,7 @@
 		// fonction qui vérifie la validité d'une email
 		function isValidEmail ($email, $errorSpace = 'stored')
 		{
-			$email = $this->cleanString($email); 
+			$email = Brain::cleanString($email); 
 			
 			if(!$email || !filter_var($email, FILTER_VALIDATE_EMAIL))
 			{
@@ -972,7 +1043,7 @@
 		// fonction qui vérifie la validité d'un mot de passe
 		function isValidPassword ($password, $errorSpace = 'stored')
 		{
-			$password = $this->cleanString($password); 
+			$password = Brain::cleanString($password); 
 			
 			if(!$password || strlen($password) < 6)
 			{

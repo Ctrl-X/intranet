@@ -1,7 +1,7 @@
 /* -- base stylesheet -- */
 * { margin:0; padding:0; font-family:inherit; } ol, ul { list-style:none; }
 
-body { font-family:Helvetica, Arial, sans-serif; font-size:16px; }
+body { font-family:Helvetica, Arial, sans-serif; font-size:14px; }
 a {}
 h1, h2, h3, h4, h5, h6 {}
 h1 {} h2 {} h3 {} h4 {} h5 {} h6 {}
@@ -10,10 +10,80 @@ blockquote {}
 label {}
 strong {}
 em {}
-select {}
 textarea {}
-input[type="text"], input.text {}
-input[type="submit"], input.submit {}
+
+/* classes pour les formulaires : valide / invalide */
+.unvalid { box-shadow:0px 0px 6px red; -webkit-box-shadow:0px 0px 6px red; -moz-box-shadow:0px 0px 6px red; -ms-box-shadow:0px 0px 6px red; -o-box-shadow:0px 0px 6px red; border-color:red!important; }
+.valid { border-color:green!important; }
+/* ------------------------------------------------ */
+
+/* css pour le placeholder + class pour le support des anciens navigateurs */
+::-webkit-input-placeholder { color: #b6b6b6; }
+:-moz-placeholder { color: #b6b6b6; }
+.placeholder { color: #b6b6b6; }
+/* ----------------------------------------------------------------------- */
+
+/* css pour les éléments de formulaires */
+select { padding:4px; border:1px solid #b6b6b6; outline:none; }
+select:focus { border:1px solid #ff93df; }
+input[type="text"], input.text, input[type="password"], input.password {
+	padding:4px; 
+	border:1px solid #b6b6b6; 
+	font-size:0.9em; 
+	outline:none; 
+}
+input[type="text"]:focus, input.text:focus, input[type="password"]:focus, input.password:focus {
+	border:1px solid #ff93df;
+}
+input[type="submit"], input.submit, a.btn {
+	display:block; 
+	font-size:1em; 
+	text-decoration:none; 
+	padding:4px 8px 4px 8px; 
+	border:1px solid transparent; 
+	background-color:#ff93df; 
+	color:#ffffff;
+}
+input[type="submit"]:hover, input.submit:hover, a.btn:hover {
+	background-color:#ffccff; 
+	border:1px solid transparent; 
+	cursor:pointer; 
+}
+input[type="submit"]:active, input.submit:active, a.btn:active {
+	background-color:#ffffff; 
+	border:1px solid #ff93df; 
+	color:#ff93df; 
+}
+.required {
+	color:orange; 
+}
+/* ------------------------------------ */
+
+/* css pour les checkbox perso */
+.niceform .nfInputs {
+	display:none; 
+}
+ul.niceform>li {
+	background-color:#ffccff; 
+	cursor:pointer; 
+	float:left; 
+	padding:2px 4px 2px 4px; 
+	color:#ffffff; 
+	border:1px solid #ffffff; 
+}
+ul.niceform>li:hover {
+	background-color:#ff93df; 
+}
+ul.niceform>li.unchecked {
+}
+ul.niceform>li.checked {
+	background-color:#ffffff;
+	color:#ff93df; 
+	border:1px solid #ff93df; 
+	cursor:default; 
+}
+/* --------------------------- */
+
 .clear { clear:both; }
 
 div#container {
@@ -58,10 +128,19 @@ div#container {
 .tile._1x2 .content, .tile._2x2 .content, .tile._3x2 .content { height:377px; }
 .tile._1x3 .content, .tile._2x3 .content, .tile._3x3 .content { height:602px; }
 
+#leftcolumn #bandeau {
+	margin:0 8px 8px 8px; 
+	height:313px; 
+	background-color:gray; 
+}
+
 #leftcolumn .profil {
 	height:209px; 
 	width:209px; 
 	text-align:center; 
+}
+#leftcolumn .profil a.btn {
+	margin:5px 0 0 0; 
 }
 #leftcolumn .profil .infos {
 	margin:8px 0 8px 0; 
@@ -89,8 +168,62 @@ div#container {
 
 #maincolumn {
 	width:675px;
+	padding:104px 0 0 0;
 	float:left; 
 }
 #maincolumn .tile {
 	float:left; 
+}
+
+#signin .content li {
+	margin:0 0 8px 0; 
+}
+#signin .content li:last-child {
+	margin-top:14px; 
+}
+#signin li input[type="text"], #signin li input[type="password"] {
+	width:181px; 
+}
+#signin input[type="submit"] {
+	width:100%; 
+}
+
+#signup>.content>form>ul>li {
+	float:left; 
+	width:152px; 
+	height:33px; 
+	margin:0 8px 8px 0; 
+}
+#signup>.content>form>ul>li.colspan {
+	width:312px; 
+}
+#signup>.content>form>ul>li.colspan .niceform.statut li {
+	width:102px;
+}
+#signup>.content>form>ul>li.colspan .niceform li {
+	text-align:center; 
+	line-height:26px; 
+	padding:0;
+}
+#signup li input[type="text"], #signup li input[type="password"] {
+	width:142px; 
+}
+#signup li select {
+	width:152px; 
+	height:26px; 
+	padding-top:3px;
+}
+#signup li input[type="submit"] {
+	width:100%; 
+}
+#signup .classe.disable {
+	visibility:hidden; 
+/*
+	-khtml-opacity:0.2; 
+	-moz-opacity : 0.2; 
+	-ms-filter: "alpha(opacity=20)"; 
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=20); 
+	filter : alpha(opacity=20); 
+	opacity : 0.2;
+*/
 }

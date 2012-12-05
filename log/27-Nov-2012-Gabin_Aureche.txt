@@ -55,3 +55,11 @@
 [10h29] : SHOW INDEXES FROM utilisateur 
 [10h29] : SHOW INDEXES FROM utilisateur 
 [10h29] : SHOW INDEXES FROM utilisateur 
+[11h17] : UPDATE `utilisateur` SET `derniere_connexion` = '1354015057' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h17] : SHOW INDEXES FROM classe 
+[11h17] : SHOW INDEXES FROM utilisateur 
+[13h19] : SHOW INDEXES FROM utilisateur 
+[13h19] : SHOW INDEXES FROM utilisateur 
+[13h31] : SHOW INDEXES FROM utilisateur 
+[13h31] : SHOW INDEXES FROM utilisateur 
+[13h31] : SHOW INDEXES FROM utilisateur 

@@ -1,0 +1,5 @@
+[9h41] : SHOW INDEXES FROM utilisateur 
+[9h48] : SHOW INDEXES FROM utilisateur 
+[9h49] : SHOW INDEXES FROM utilisateur 
+[9h49] : SHOW INDEXES FROM utilisateur 
+[9h49] : SHOW INDEXES FROM utilisateur 
