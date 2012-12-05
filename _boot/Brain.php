@@ -23,6 +23,11 @@
 		private $dbHost 	= 'localhost'; 
 		private $dbLogin 	= 'root'; 
 		private $dbPass 	= ''; 
+		
+		// private $dbHost 	= '10.0.236.98'; 
+		// private $dbLogin 	= 'root'; 
+		// private $dbPass 	= 'chocolat1'; 
+		
 		private $dbName 	= 'agora'; 
 		private $css		= array(); 
 		private $js			= array(); 
@@ -184,9 +189,9 @@
 			if($request)
 			{
 				if($request['log']['request'] && (!isset($_SESSION) || empty($_SESSION)))
-					header('Location: ' . (isset($request['log']['redirect']) ? $request['log']['redirect'] : 'login.php')); 
+					Brain::redirect((isset($request['log']['redirect']) ? $request['log']['redirect'] : 'login.php')); 
 				else if(!$request['log']['request'] && isset($request['log']['redirect']) && isset($_SESSION) && !empty($_SESSION))
-					header('Location: ' . $request['log']['redirect']); 
+					Brain::redirect($request['log']['redirect']); 
 				
 				if($request['params']['request'])
 					for($i = 0; $i < count($request['params']['request']); $i++)
@@ -194,7 +199,7 @@
 						$key = $request['params']['request'][$i]; 
 						
 						if(!isset($_REQUEST[$key]))
-							header('Location: ' . (isset($request['params']['redirect']) ? $request['params']['redirect'] : 'index.php')); 
+							Brain::redirect((isset($request['params']['redirect']) ? $request['params']['redirect'] : 'index.php')); 
 					}
 			}
 			else
@@ -477,7 +482,14 @@
 		{
 			session_destroy(); 
 			unset($_SESSION); 
-			header('Location: login.php'); 
+			
+			Brain::redirect('login.php'); 
+		}
+		
+		public static function redirect ($location)
+		{
+			ob_end_clean(); 
+			header('Location: ' . $location); 
 		}
 		
 		function signIn ()
@@ -496,7 +508,7 @@
 							)
 						)); 
 						
-						header('Location: index.php'); 
+						Brain::redirect('index.php'); 
 					}
 					else
 					{

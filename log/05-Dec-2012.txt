@@ -3,3 +3,8 @@
 [10h22] -  : SHOW INDEXES FROM `utilisateur` 
 [10h22] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354702955' WHERE `email` = 'gabin.aureche@live.fr' 
 [10h22] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[11h06] -  : SHOW INDEXES FROM `classe` 
+[11h06] -  : SHOW INDEXES FROM `utilisateur` 
+[11h06] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354705564' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h06] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[11h06] -  : SHOW INDEXES FROM `classe` 
