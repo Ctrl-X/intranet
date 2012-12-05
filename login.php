@@ -2,7 +2,7 @@
 	include('_boot/Brain.php'); 
 	$Brain->beforeLoad(array(
 		'log'		=> array('request' => false, 'redirect' => 'index.php'),	// nécessite que l'utilisateur soit connecté ou pas
-		'params'	=> array('request' => false)	// liste des paramètres nécessaires à l'affichage de la page
+		'params'	=> array('request' => false)								// liste des paramètres nécessaires à l'affichage de la page
 	)); 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

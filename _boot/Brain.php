@@ -477,6 +477,7 @@
 		{
 			session_destroy(); 
 			unset($_SESSION); 
+			header('Location: login.php'); 
 		}
 		
 		function signIn ()
@@ -495,7 +496,7 @@
 							)
 						)); 
 						
-						echo 'you just get logged in !'; 
+						header('Location: index.php'); 
 					}
 					else
 					{

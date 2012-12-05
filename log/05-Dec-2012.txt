@@ -1,0 +1,5 @@
+[10h22] -  : SHOW INDEXES FROM `classe` 
+[10h22] -  : SHOW INDEXES FROM `classe` 
+[10h22] -  : SHOW INDEXES FROM `utilisateur` 
+[10h22] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354702955' WHERE `email` = 'gabin.aureche@live.fr' 
+[10h22] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
