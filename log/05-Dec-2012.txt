@@ -8,3 +8,18 @@
 [11h06] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354705564' WHERE `email` = 'gabin.aureche@live.fr' 
 [11h06] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
 [11h06] -  : SHOW INDEXES FROM `classe` 
+[11h33] -  : SHOW INDEXES FROM `classe` 
+[11h33] -  : SHOW INDEXES FROM `classe` 
+[11h33] -  : SHOW INDEXES FROM `classe` 
+[11h33] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h35] -  : SHOW INDEXES FROM `classe` 
+[11h35] -  : SHOW INDEXES FROM `classe` 

@@ -43,6 +43,7 @@
 					}
 				}); 
 				
+				/*
 				$("#nom").datepicker({
 					showOtherMonths		: true, 
 					selectOtherMonths	: true, 
@@ -50,6 +51,7 @@
 					minDate				: 0, 
 					maxDate				: "+6M" 
 				}); 
+				*/
 			}); 
 		</script>
 	</head>

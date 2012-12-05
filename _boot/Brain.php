@@ -1,9 +1,8 @@
 ﻿<?php
+	setlocale(LC_CTYPE, "fr_FR.ISO-8859-1");
+	
 	// passer en mode debug
 	define('_DEBUGMODE', true); 
-	/*
-		TODO : module pour dire quand quelqu'un sera à l'école (hors horaires de cours)
-	*/
 	
 	// importation des fonctions génériques non associés à un objet
 	require_once('lib.php'); 
@@ -1014,7 +1013,7 @@
 		// fonction qui vérifie la validité d'un prénom
 		function isValidFirstname ($firstname, $errorSpace = 'stored')
 		{
-			$firstname = Brain::cleanString($firstname, '/^[A-Za-z]+$/'); 
+			$firstname = Brain::cleanString($firstname, '/\w/'); 
 			
 			if(!$firstname || strlen($firstname) < 3)
 			{
@@ -1028,7 +1027,7 @@
 		// fonction qui vérifie la validité d'un nom
 		function isValidLastname ($lastname, $errorSpace = 'stored')
 		{
-			$lastname = Brain::cleanString($lastname, '/^[A-Za-z]+$/'); 
+			$lastname = Brain::cleanString($lastname, '/\w/'); 
 			
 			if(!$lastname || strlen($lastname) < 3)
 			{
