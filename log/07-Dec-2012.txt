@@ -1,0 +1,108 @@
+[9h39] -  : SHOW INDEXES FROM `module` 
+[9h39] -  : SHOW INDEXES FROM `demo` 
+[9h39] -  : SHOW INDEXES FROM `classe` 
+[9h41] -  : SHOW INDEXES FROM `classe` 
+[9h41] -  : SHOW INDEXES FROM `classe` 
+[9h42] -  : SHOW INDEXES FROM `classe` 
+[9h43] -  : SHOW INDEXES FROM `classe` 
+[9h43] -  : SHOW INDEXES FROM `classe` 
+[9h44] -  : SHOW INDEXES FROM `classe` 
+[9h44] -  : SHOW INDEXES FROM `classe` 
+[9h44] -  : SHOW INDEXES FROM `classe` 
+[9h44] -  : SHOW INDEXES FROM `classe` 
+[10h37] -  : SHOW INDEXES FROM `classe` 
+[11h04] -  : SHOW INDEXES FROM `classe` 
+[11h05] -  : SHOW INDEXES FROM `classe` 
+[11h05] -  : SHOW INDEXES FROM `classe` 
+[11h07] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h08] -  : SHOW INDEXES FROM `classe` 
+[11h09] -  : SHOW INDEXES FROM `classe` 
+[11h10] -  : SHOW INDEXES FROM `classe` 
+[11h10] -  : SHOW INDEXES FROM `classe` 
+[11h10] -  : SHOW INDEXES FROM `classe` 
+[11h13] -  : SHOW INDEXES FROM `classe` 
+[11h30] -  : SHOW INDEXES FROM `classe` 
+[11h34] -  : SHOW INDEXES FROM `classe` 
+[11h37] -  : SHOW INDEXES FROM `classe` 
+[11h38] -  : SHOW INDEXES FROM `classe` 
+[11h38] -  : SHOW INDEXES FROM `classe` 
+[11h38] -  : SHOW INDEXES FROM `classe` 
+[11h38] -  : SHOW INDEXES FROM `classe` 
+[11h39] -  : SHOW INDEXES FROM `classe` 
+[11h39] -  : SHOW INDEXES FROM `classe` 
+[11h39] -  : SHOW INDEXES FROM `classe` 
+[11h40] -  : SHOW INDEXES FROM `classe` 
+[11h40] -  : SHOW INDEXES FROM `classe` 
+[11h40] -  : SHOW INDEXES FROM `classe` 
+[11h43] -  : SHOW INDEXES FROM `classe` 
+[11h44] -  : SHOW INDEXES FROM `classe` 
+[11h45] -  : SHOW INDEXES FROM `classe` 
+[11h45] -  : SHOW INDEXES FROM `classe` 
+[11h47] -  : SHOW INDEXES FROM `classe` 
+[11h48] -  : SHOW INDEXES FROM `classe` 
+[11h48] -  : SHOW INDEXES FROM `classe` 
+[11h49] -  : SHOW INDEXES FROM `classe` 
+[11h49] -  : SHOW INDEXES FROM `classe` 
+[11h52] -  : SHOW INDEXES FROM `classe` 
+[11h52] -  : SHOW INDEXES FROM `classe` 
+[11h52] -  : SHOW INDEXES FROM `classe` 
+[11h52] -  : SHOW INDEXES FROM `classe` 
+[11h53] -  : SHOW INDEXES FROM `classe` 
+[11h53] -  : SHOW INDEXES FROM `utilisateur` 
+[11h53] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354881236' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h53] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[11h53] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h53] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[11h54] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h54] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[11h55] -  : SHOW INDEXES FROM `module` 
+[11h55] -  : SHOW INDEXES FROM `demo` 
+[11h55] -  : SHOW INDEXES FROM `classe` 
+[11h55] -  : SHOW INDEXES FROM `utilisateur` 
+[11h55] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354881307' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h55] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[11h55] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h55] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[11h55] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h55] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[11h56] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h56] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[11h57] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[11h57] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[14h48] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h48] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[15h51] -  : SHOW INDEXES FROM `module` 
+[15h51] -  : SHOW INDEXES FROM `demo` 
+[15h51] -  : SHOW INDEXES FROM `classe` 
+[15h52] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h53] -  : SHOW INDEXES FROM `classe` 
+[15h54] -  : SHOW INDEXES FROM `classe` 
+[15h54] -  : SHOW INDEXES FROM `classe` 
+[15h54] -  : SHOW INDEXES FROM `classe` 
+[15h54] -  : SHOW INDEXES FROM `classe` 
+[15h54] -  : SHOW INDEXES FROM `classe` 
+[15h55] -  : SHOW INDEXES FROM `classe` 
+[15h58] -  : SHOW INDEXES FROM `classe` 
+[15h58] -  : SHOW INDEXES FROM `classe` 
+[15h59] -  : SHOW INDEXES FROM `classe` 
+[15h59] -  : SHOW INDEXES FROM `classe` 
+[15h59] -  : SHOW INDEXES FROM `classe` 

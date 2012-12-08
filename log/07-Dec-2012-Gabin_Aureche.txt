@@ -1,0 +1,18 @@
+[11h53] : UPDATE `utilisateur` SET `derniere_connexion` = '1354881236' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h53] : SHOW INDEXES FROM `classe` 
+[11h53] : SHOW INDEXES FROM `module` 
+[11h53] : SHOW INDEXES FROM `demo` 
+[11h54] : SHOW INDEXES FROM `module` 
+[11h54] : SHOW INDEXES FROM `demo` 
+[11h55] : UPDATE `utilisateur` SET `derniere_connexion` = '1354881307' WHERE `email` = 'gabin.aureche@live.fr' 
+[11h55] : SHOW INDEXES FROM `classe` 
+[11h55] : SHOW INDEXES FROM `module` 
+[11h55] : SHOW INDEXES FROM `demo` 
+[11h55] : SHOW INDEXES FROM `module` 
+[11h55] : SHOW INDEXES FROM `demo` 
+[11h56] : SHOW INDEXES FROM `module` 
+[11h56] : SHOW INDEXES FROM `demo` 
+[11h57] : SHOW INDEXES FROM `module` 
+[11h57] : SHOW INDEXES FROM `demo` 
+[14h48] : SHOW INDEXES FROM `module` 
+[14h48] : SHOW INDEXES FROM `demo` 

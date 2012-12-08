@@ -16,6 +16,7 @@
 			}); 
 		</script>
 		<script type="text/javascript">
+			/*
 			Brain.selectData(
 			{
 				"utilisateur" : ["nom", "prenom"]
@@ -35,9 +36,27 @@
 			$(document).ready(function(){
 				Brain.confirm("#confirm", "u sure ??"); 
 			}); 
+			*/
+			
+			$(document).ready(function(){
+				$(".colorpickerpink").hover(function(){
+					$("body").removeClass("saumon").removeClass("blue").addClass("pink"); 
+				}); 
+				
+				$(".colorpickersaumon").hover(function(){
+					$("body").removeClass("pink").removeClass("blue").addClass("saumon"); 
+				}); 
+				
+				$(".colorpickerblue").hover(function(){
+					$("body").removeClass("pink").removeClass("saumon").addClass("blue"); 
+				}); 
+			}); 
 		</script>
 	</head>
-	<body>
+	<body class="<?php if(isset($_SESSION['color']) && !empty($_SESSION['color'])) echo $_SESSION['color']; else echo 'pink'; ?>">
+		<div class="colorpickerpink"></div>
+		<div class="colorpickersaumon"></div>
+		<div class="colorpickerblue"></div>
 		<?php
 			// _echo("<div style=\"width:250px;height:250px;background-color:red;\"></div>"); 
 			// _text("<div style=\"width:250px;height:250px;background-color:red;\"></div>"); 
@@ -61,7 +80,7 @@
 					
 					<div class="infos">
 						<?php echo $_SESSION['prenom'] . ' ' . $_SESSION['nom'] . ' - ' . $_SESSION['classe']; ?>
-						<a href="index.php?MODULE=Brain&ACTION=disconnect" class="btn">déconnexion</a>
+						<a href="index.php?MODULE=Brain&ACTION=disconnect&CONTEXT=data" class="btn">déconnexion</a>
 					</div>
 					
 					<ul class="links">
@@ -85,6 +104,8 @@
 			</div>
 			
 			<div id="maincolumn">
+				<?php $Brain->printModule(); ?>
+				<!--
 				<div id="matuile" class="tile _1x3">
 					<h3>Mon module</h3>
 					<div class="content">
@@ -119,6 +140,7 @@
 						contenu de mon module
 					</div>
 				</div>
+				-->
 				
 				<div class="clear"></div>
 			</div>

@@ -19,15 +19,12 @@
 		
 		public $mysql		= null; 
 		
+		
 		private $dbHost 	= 'localhost'; 
 		private $dbLogin 	= 'root'; 
 		private $dbPass 	= ''; 
-		
-		// private $dbHost 	= '10.0.236.98'; 
-		// private $dbLogin 	= 'root'; 
-		// private $dbPass 	= 'chocolat1'; 
-		
 		private $dbName 	= 'agora'; 
+		
 		private $css		= array(); 
 		private $js			= array(); 
 		private $error		= array(); 
@@ -297,23 +294,16 @@
 		 * \param	'limit' pour donner une limite à la récupération de ce module (les 5 derniers, ...)
 		 * \return	appel la fonction getModule() autant de fois que de modules demandés
 		 */
-		function printModule ($params = array( 'position' => 'normal', 'context' => 'tile', 'limit' => false, 'where' => false, 'order' => false))
+		function printModule ($context = 'tile', $limit = 10)
 		{
-			if(!isset($params['position']))	$params['position']	= 'normal'; 
-			if(!isset($params['context']))	$params['context']	= 'tile'; 
-			if(!isset($params['limit']))	$params['limit']	= false; 
-			if(!isset($params['where']))	$params['where']	= false; 
-			if(!isset($params['order']))	$params['order']	= false; 
-			
 			$modules = $this->selectData(
 				array(
 					'module' => array(
 						'name', 'css', 'script'
 					)
 				), array(
-					'order' => $params['order'] ? $params['order'] : '`installDate` ASC', 
-					'where' => $params['where'] ? $params['where'] : false, 
-					'limit' => $params['limit'] ? $params['limit'] : false
+					'order' => '`installDate` ASC', 
+					'limit' => $limit
 				)
 			); 
 			
@@ -321,7 +311,7 @@
 			{
 				$theModule = $modules[$i]; 
 				
-				if($this->getModule(array('MODULE' => $theModule['name'], 'ACTION' => 'model', 'CONTEXT' => $params['context']), true))
+				if($this->getModule(array('MODULE' => $theModule['name'], 'ACTION' => 'model', 'CONTEXT' => $context), true))
 				{
 					$this->addCss($theModule['name'], $theModule['css']); 
 					$this->addJs($theModule['name'], $theModule['script']); 
@@ -331,16 +321,22 @@
 		
 		function addCss ($moduleName, $css)
 		{
-			$css = explode(',', str_replace(' ', '', $css)); 
-			for($i = 0; $i < count($css); $i++)
-				$this->css[] = 'modules/' . $moduleName . '/' . $css[$i]; 
+			if(!empty($css))
+			{
+				$css = explode(',', str_replace(' ', '', $css)); 
+				for($i = 0; $i < count($css); $i++)
+					$this->css[] = 'modules/' . $moduleName . '/' . $css[$i]; 
+			}
 		}
 		
 		function addJs ($moduleName, $js)
 		{
-			$js = explode(',', str_replace(' ', '', $js)); 
-				for($i = 0; $i < count($js); $i++)
-					$this->js[] = 'modules/' . $moduleName . '/' . $js[$i]; 
+			if(!empty($js))
+			{
+				$js = explode(',', str_replace(' ', '', $js)); 
+					for($i = 0; $i < count($js); $i++)
+						$this->js[] = 'modules/' . $moduleName . '/' . $js[$i]; 
+			}
 		}
 		
 		/**
@@ -397,10 +393,37 @@
 				file_put_contents($fileName . '-' . $name . '.txt', '[' . date('G\hi', time()) . "] : $text \r\n", FILE_APPEND); 
 		}
 		
-		function printError ($from)
+		function printError ($namespace, $size = '_1x1', $title = 'erreurs')
 		{
-			if(isset($this->error[$from]) && !empty($this->error[$from]))
-				var_dump($this->error[$from]); 
+			$errors = is_array($namespace) ? $namespace : $this->_error($namespace); 
+			if($errors && !empty($errors))
+			{
+				$out = 
+				'
+					<div class="error ' . $size . '">
+						<div class="head">
+							' . $title . '
+							<div class="close">
+							</div>
+						</div>
+						<div class="content">
+							<ul>
+				';
+				
+				foreach($errors AS $key => $val)
+					$out .= "<li>$val</li>"; 
+				
+				$out .=
+				'
+							</ul>
+						</div>
+					</div>
+				'; 
+				
+				echo $out; 
+			}
+			else
+				return false; 
 		}
 		
 		function newPass ($userEmail = null, $sendEmail = true)
@@ -495,7 +518,7 @@
 		{
 			if(isset($_REQUEST['email']) && isset($_REQUEST['pass']))
 			{
-				if(count($user = Brain::mysqlQuery('SELECT `id_utilisateur`, `prenom`, `utilisateur`.`nom`, `email`, `pass`, `statut`, `rang`, `date_inscription`, `derniere_connexion`, `hash`, `classe`.`nom` AS `classe` FROM `utilisateur` LEFT JOIN `classe` ON `utilisateur`.`id_classe` = `classe`.`id_classe` WHERE `email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\'')) > 0)
+				if(count($user = Brain::mysqlQuery('SELECT `id_utilisateur`, `prenom`, `utilisateur`.`nom`, `email`, `pass`, `statut`, `rang`, `date_inscription`, `derniere_connexion`, `hash`, `color`, `classe`.`nom` AS `classe` FROM `utilisateur` LEFT JOIN `classe` ON `utilisateur`.`id_classe` = `classe`.`id_classe` WHERE `email` = \'' . $_REQUEST['email'] . '\' AND `pass` = \'' . md5($_REQUEST['pass']) . '\'')) > 0)
 				{
 					if($user[0]['rang'] != 'inactif' && $user[0]['rang'] != 'désactivé')
 					{
@@ -510,17 +533,34 @@
 						Brain::redirect('index.php'); 
 					}
 					else
-					{
-						echo 'compte inactif'; 
-					}
+						$this->error['signin']['log'] = 'compte inactif'; 
 				}
 				else
-					echo('email ou mot de passe incorrect'); 
+					$this->error['signin']['log'] = 'email ou mot de passe incorrect'; 
 			}
+		}
+		
+		function _error($namespace, $name = null)
+		{
+			if(isset($this->error[$namespace]) && !empty($this->error[$namespace]))
+			{
+				if($name)
+				{
+					if(isset($this->error[$namespace][$name]) && !empty($this->error[$namespace][$name]))
+						echo $this->error[$namespace][$name]; 
+					else
+						return false; 
+				}
+				else
+					return $this->error[$namespace]; 
+			}
+			else
+				return false; 
 		}
 		
 		function signUp ()
 		{
+			// die("l'Agora est en cours de développement et il n'est pas encore possible de s'inscrire"); 
 			if(!empty($_POST))
 			{
 				$pattern = array(
@@ -535,6 +575,9 @@
 					$val = isset($_REQUEST[$key]) ? $_REQUEST[$key] : null; 
 					$$key = $this->$func($val, 'signup'); 
 				}
+				
+				if($_POST['code'] != $this->codeAcces)
+					$this->error['signup']['code'] = 'Code accès incorrect'; 
 				
 				if(empty($this->error['signup']))
 				{
@@ -568,112 +611,14 @@
 							(
 								'height'	=> 400, 
 								'width'		=> 400, 
-								'suffix'	=> '_negate', 
-								'filter'	=> 'NEGATE', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
 								'suffix'	=> '_gray', 
 								'filter'	=> 'GRAYSCALE', 
 								'args'		=> null, 
 								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_brithness', 
-								'filter'	=> 'BRIGTHNESS', 
-								'args'		=> array(20), 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_contrast', 
-								'filter'	=> 'CONTRAST', 
-								'args'		=> array(20), 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_colorize', 
-								'filter'	=> 'COLORIZE', 
-								'args'		=> array(0, 255, 120), 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_edgedetect', 
-								'filter'	=> 'EDGEDETECT', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_emboss', 
-								'filter'	=> 'EMBOSS', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_gaussian_blur', 
-								'filter'	=> 'GAUSSIAN_BLUR', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_selective_blur', 
-								'filter'	=> 'SELECTIVE_BLUR', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_mean_removal', 
-								'filter'	=> 'MEAN_REMOVAL', 
-								'args'		=> null, 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_smooth', 
-								'filter'	=> 'SMOOTH', 
-								'args'		=> array(6), 
-								'crop'		=> false
-							),
-							array
-							(
-								'height'	=> 400, 
-								'width'		=> 400, 
-								'suffix'	=> '_pixelate', 
-								'filter'	=> 'PIXELATE', 
-								'args'		=> array(15, true), 
-								'crop'		=> false
 							)
 						), 'portrait', 'images/portrait/'); 
 						
+						// uploadFile retourne null s'il n'y a pas de fichier à uploader sinon un tableau ordonné avec le nom des fichiers (selon l'ordre du tableau de demande)
 						$portrait = $portrait ? 'images/portrait/' . $portrait[0] : ''; 
 						
 						if($this->insertData(array(
@@ -695,10 +640,10 @@
 							Email::sendEmail ($email, 'Inscription sur agora.supcrea.fr', 
 								array
 								(
-									'name' => 'signup', 
-									'tofirstname' => $prenom, 
-									'tolastname' => $nom, 
-									'toemail' => $email
+									'name'			=> 'signup', 
+									'tofirstname'	=> $prenom, 
+									'tolastname'	=> $nom, 
+									'toemail'		=> $email
 								)
 							); 
 							
@@ -973,7 +918,7 @@
 		// TOFIX : utile pour les commandes ajax
 		function watchParams ()
 		{
-			if(isset($_REQUEST['MODULE']) && !empty($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && !empty($_REQUEST['ACTION']))
+			if(isset($_REQUEST['MODULE']) && !empty($_REQUEST['MODULE']) && isset($_REQUEST['ACTION']) && !empty($_REQUEST['ACTION']) && ($_REQUEST['ACTION'] == 'data' || (isset($_REQUEST['CONTEXT']) && !empty($_REQUEST['CONTEXT']) && $_REQUEST['CONTEXT'] == 'data')))
 				$this->getModule(array(
 					'MODULE' => $_REQUEST['MODULE'], 
 					'ACTION' => $_REQUEST['ACTION'], 
@@ -1017,7 +962,7 @@
 			
 			if(!$firstname || strlen($firstname) < 3)
 			{
-				$this->error[$errorSpace]['prénom'] = 'Votre prénom doit contenir 3 caractères minimum et ne peut contenir que des lettres'; 
+				$this->error[$errorSpace]['prenom'] = 'Votre prénom doit contenir 3 caractères minimum et ne peut contenir que des lettres'; 
 				return false; 
 			}
 			
@@ -1117,15 +1062,13 @@
 			{
 				ob_start(); 
 				include('email/' . $params['name'] . '.php'); 
-				
 				$content = ob_get_clean();
 				
-				unset($params['name']); 
-				
+				unset($params['name']); // on supprime le name pour ne pas gêner la boucle qui suit
 				foreach($params AS $hash => $value)
 					$content = preg_replace('/<#' . $hash . ' default=.*#>/', $value, $content); 
 				
-				return $content = preg_replace('/<#.*(default=(.*))#>/', '\2', $content); 
+				return $content = preg_replace('/<#.*(default=(.*))#>/', '\2', $content); // on remplace toutes les balises non renseignés par leur valeur par défaut
 			}
 			else
 				return false; 

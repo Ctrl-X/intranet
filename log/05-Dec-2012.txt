@@ -23,3 +23,69 @@
 [11h34] -  : SHOW INDEXES FROM `classe` 
 [11h35] -  : SHOW INDEXES FROM `classe` 
 [11h35] -  : SHOW INDEXES FROM `classe` 
+[13h54] -  : SHOW INDEXES FROM `classe` 
+[13h54] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `module` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h55] -  : SHOW INDEXES FROM `classe` 
+[13h56] -  : SHOW INDEXES FROM `classe` 
+[13h56] -  : SHOW INDEXES FROM `classe` 
+[13h56] -  : SHOW INDEXES FROM `classe` 
+[13h57] -  : SHOW INDEXES FROM `classe` 
+[13h58] -  : SHOW INDEXES FROM `classe` 
+[13h58] -  : SHOW INDEXES FROM `classe` 
+[14h00] -  : SHOW INDEXES FROM `utilisateur` 
+[14h00] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354716021' WHERE `email` = 'gabin.aureche@live.fr' 
+[14h00] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[14h00] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h00] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h00] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h00] -  : SHOW INDEXES FROM `module` 
+[14h00] -  : SHOW INDEXES FROM `classe` 
+[14h01] -  : SHOW INDEXES FROM `utilisateur` 
+[14h01] - Gabin_Aureche  : UPDATE `utilisateur` SET `derniere_connexion` = '1354716065' WHERE `email` = 'gabin.aureche@live.fr' 
+[14h01] - Gabin_Aureche  : SHOW INDEXES FROM `classe` 
+[14h01] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h01] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h01] - Gabin_Aureche  : CREATE TABLE demo (id_demo int NOT NULL AUTO_INCREMENT, intitule varchar(50), description varchar(50), PRIMARY KEY (id_demo)) 
+[14h01] - Gabin_Aureche  : INSERT INTO `module` (`name`, `script`, `css`, `installDate`, `cronTask`, `topMenu`) VALUES ('Demo', 'Demo.js', 'Demo.css', '1354716081', '', '') 
+[14h01] - Gabin_Aureche  : CREATE TABLE liensutiles (id_lienutile int NOT NULL AUTO_INCREMENT, id_utilisateur int NOT NULL, id_categorie int NOT NULL, date_ajout int NOT NULL, titre varchar(140), description text, image varchar(250) default '', lien varchar(250) default '', PRIMARY KEY (id_lienutile)) 
+[14h01] - Gabin_Aureche  : CREATE TABLE liensutiles_categorie (id_liensutiles_categorie int NOT NULL AUTO_INCREMENT, nom varchar(250), PRIMARY KEY (id_liensutiles_categorie)) 
+[14h01] - Gabin_Aureche  : INSERT INTO `module` (`name`, `script`, `css`, `installDate`, `cronTask`, `topMenu`) VALUES ('LiensUtiles', 'js/fichier.js', 'css/fichier.css', '1354716081', '0', '0') 
+[14h01] - Gabin_Aureche  : CREATE TABLE profils (id_profil int NOT NULL AUTO_INCREMENT, id_utilisateur int NOT NULL, behance varchar(250) default '', deviantart varchar(250) default '', tumblr varchar(250) default '', linkedin varchar(250) default '', viadeo varchar(250) default '', facebook varchar(250) default '', twitter varchar(250) default '', centresinterets text default '', competences text default '', PRIMARY KEY (id_profil)) 
+[14h01] - Gabin_Aureche  : INSERT INTO `module` (`name`, `script`, `css`, `installDate`, `cronTask`, `topMenu`) VALUES ('Profil', 'js/fichier.js', 'css/fichier.css', '1354716081', '0', '0') 
+[14h01] - Gabin_Aureche  : CREATE TABLE rendus (id_rendu int NOT NULL AUTO_INCREMENT, id_classe int NOT NULL, id_utilisateur int NOT NULL, matiere varchar(60), titre varchar(60), description text default '', fichiers text default '', date_rendu int NOT NULL, PRIMARY KEY (id_rendu)) 
+[14h01] - Gabin_Aureche  : INSERT INTO `module` (`name`, `script`, `css`, `installDate`, `cronTask`, `topMenu`) VALUES ('Rendu', 'js/fichier.js', 'css/fichier.css', '1354716081', '0', '0') 
+[14h01] - Gabin_Aureche  : CREATE TABLE entreprises (id_entreprise int NOT NULL AUTO_INCREMENT, id_utilisateur int NOT NULL, nom varchar(120), adresse varchar(150) default '', tel varchar(20) default'', mail varchar(120), url varchar(250) default '', PRIMARY KEY (id_entreprise)) 
+[14h01] - Gabin_Aureche  : CREATE TABLE stages (id_stage int NOT NULL AUTO_INCREMENT, id_entreprise int NOT NULL, id_utilisateur int NOT NULL, id_classe int NOT NULL, titre varchar(180), annonce text, PRIMARY KEY (id_stage)) 
+[14h01] - Gabin_Aureche  : INSERT INTO `module` (`name`, `script`, `css`, `installDate`, `cronTask`, `topMenu`) VALUES ('Stages', 'js/fichier.js', 'css/fichier.css', '1354716081', '0', '0') 
+[14h01] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h02] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h03] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h03] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h04] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h04] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 
+[14h04] - Gabin_Aureche  : SHOW INDEXES FROM `module` 
+[14h04] - Gabin_Aureche  : SHOW INDEXES FROM `demo` 

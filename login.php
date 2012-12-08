@@ -12,13 +12,7 @@
 		<?php include('_boot/head.php'); ?>
 		<script type="text/javascript">
 			$(document).ready(function(){
-				Brain.init(
-				{
-					isotope :
-					{
-						parentSelector : "#container"
-					}
-				}); 
+				Brain.init({ isotope : { parentSelector : "#container" } }); 
 				
 				$(".niceform li").click(function(){
 					if($(this).html() != "étudiant")
@@ -56,13 +50,41 @@
 		</script>
 	</head>
 	
-	<body>
+	<body class="pink">
 		<div id="container">
-			<?php $Brain->printError('signup'); ?>
+			<div class="tile _3x1">
+				<h3>l'Agora c'est quoi ?</h3>
+				<div class="content">
+					<p>
+						L'Agora est un intranet créé par les WebDesigner 2012 de Supcréa ouvert exclusivement aux étudiants, intervenant et membre de l'administration de l'école. 
+					</p>
+					<p>
+						L'objectif est d'apporter des outils de communication, de support de cours mais aussi de partager sur la vie étudante. 
+					</p>
+					<p>
+						Pour s'inscrire sur l'Agora il est nécessaire de se munir du <strong>code d'accès</strong>, distribué à l'école. 
+					</p>
+				</div>
+			</div>
+			<div class="tile _1x1">
+				<h3>besoin d'aide ?</h3>
+				<div class="content">
+					<ul class="tips">
+						<li class="support"><a href="#">mot de passe oublié</a></li>
+						<li class="support"><a href="#">compte inactif</a></li>
+						<li class="talk"><a href="#">reporter un bug</a></li>
+						<li class="talk"><a href="#">contacter les admin</a></li>
+						<li class="participe"><a href="#">créer un module pour l'Agora</a></li>
+					</ul>
+				</div>
+			</div>
+			
 			<div id="signin" class="tile _1x1">
+				<?php $Brain->printError('signin', '_1x1', 'erreur'); ?>
+				
 				<h3>connexion</h3>
 				<div class="content">
-					<form method="post" action="?MODULE=Brain&ACTION=signin">
+					<form method="post" action="?MODULE=Brain&ACTION=signin&CONTEXT=data">
 						<ul>
 							<li><label for="email"><span class="required">*</span> Email : </label></li>
 							<li><input placeholder="email@domain.fr" class="text" type="text" name="email" value="<?php if(isset($_REQUEST['email']) && isset($_REQUEST['ACTION']) && $_REQUEST['ACTION'] == 'signin') echo $_REQUEST['email']; ?>" /></li>
@@ -77,9 +99,11 @@
 			</div>
 			
 			<div id="signup" class="tile _3x1">
+				<?php $Brain->printError('signup', '_2x1', 'oups, certaines informations sont incorrects'); ?>
+				
 				<h3>inscription</h3>
 				<div class="content">
-					<form method="post" action="?MODULE=Brain&ACTION=signup" enctype="multipart/form-data">
+					<form method="post" action="?MODULE=Brain&ACTION=signup&CONTEXT=data" enctype="multipart/form-data">
 						<ul>
 							<li><label for="prenom"><span class="required">*</span> Prénom : </label></li>
 							<li><input placeholder="prénom" class="text" type="text" id="prenom" name="prenom" value="<?php if(isset($_REQUEST['prenom']) && isset($_REQUEST['ACTION']) && $_REQUEST['ACTION'] == 'signup') echo $_REQUEST['prenom']; ?>" /></li>
@@ -114,8 +138,10 @@
 							<li class="classe"><label for="classe"><span class="required">*</span> Classe : </label></li>
 							<li class="classe"><?php $Brain->getClasseForm('classe'); ?></li>
 							
-							<li><label for="portrait">Image de profil : </label></li>
-							<li style="overflow:hidden;"><input type="file" name="portrait" /></li>
+							<li class="colspan" style="overflow:hidden;">
+								<label for="portrait">Image de profil : </label>
+								<input style="max-width:180px;" type="file" name="portrait" />
+							</li>
 							
 							<li><input placeholder="code accès" class="password" type="text" name="code" value="" /></li>
 							<li><input type="submit" value="inscription" /></li>
